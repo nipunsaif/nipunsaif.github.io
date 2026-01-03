@@ -1,7 +1,3 @@
 # nipunsaif.github.io
 
-Source code for the website. 
-
-Modified from Jon Barron's site (https://jonbarron.info/)
-
-TODO: Update 
+My personal corner on the internet. Research, Projects, and Code.
