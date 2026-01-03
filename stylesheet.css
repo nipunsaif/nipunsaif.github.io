@@ -1,8 +1,8 @@
+
 /* Control size of the main image */
 .pic_region{
   width: 35%;
 }
-
 
 
 /* latin-ext */
@@ -265,7 +265,7 @@ html {
 }
 
 
-
+/*
 /* Add responsiveness - on screens less than 580px wide, display the navbar vertically instead of horizontally */
 @media screen and (max-width: 580px) {
   #navbar {
@@ -413,4 +413,3 @@ html {
   }
 
 }
-
