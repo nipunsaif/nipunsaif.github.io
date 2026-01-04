@@ -1,4 +1,6 @@
-var imageId = "cmas_image";
+tablebody = "tableBody";
+
+// var imageId = "cmas_image";
 var image1 = "images/cmas.jpg";
 // var image2 = "images/ius_2023_2.gif";
 var paperTitle = "CareerMAS: A Multi-Agent LLM Framework for Career Guidance and Job Placement in Bangladesh";
