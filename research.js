@@ -10,6 +10,20 @@ var publisherDetailsLinks =  `
 `;
 var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
 document.getElementById("tableBody").innerHTML += tableRowHTML;
+
+
+var imageId = "cid2";
+var image1 = "images/ai.jpeg";
+var image2 = "";
+var paperTitle = "AI-Powered Competitive Programming Code Generation Tool Leveraging Large Language Models";
+var descriptiom = "This research presents an AI-powered competitive programming assistant using large language models to generate, verify, and explain algorithmic solutions. Fine-tuned models (Code LLaMA, StarCoder, Mistral-7B) are trained with LoRA on the APPS dataset. An iterative pipeline integrates self-reflection, execution-based verification, and pedagogical explanations to improve accuracy, reliability, and learning effectiveness.";
+var publisherDetailsLinks =  `
+  [ <a href="https://www.researchgate.net/publication/395178878_AI-Powered_Competitive_Programming_Code_Generation_Tool_Leveraging_Large_Language_Models" target="_blank">preprint</a> ]
+  [ <a href="https://github.com/nipunsaif/CodeLlama-FT" target="_blank">code</a> ]
+
+`;
+var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
+document.getElementById("tableBody").innerHTML += tableRowHTML;
          
 // var imageId = "swave_image";
 // var image1 = "images/swave.png";
