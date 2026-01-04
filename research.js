@@ -24,6 +24,20 @@ var publisherDetailsLinks =  `
 `;
 var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
 document.getElementById("tableBody").innerHTML += tableRowHTML;
+
+
+var imageId = "cid3";
+var image1 = "images/cluechain.jpeg";
+var image2 = "";
+var paperTitle = "ClueChain: A Bayesian Network-Based Mystery Solver Application";
+var descriptiom = "ClueChain is a mystery solver application that uses Bayesian networks to solve fictional mystery scenarios. The application allows users to input various clues and evidence related to a crime and then applies Bayesian inference to calculate the probabilities of different suspects being guilty. The system provides an interactive and data-driven way to deduce the most likely suspect based on the provided evidence.";
+var publisherDetailsLinks =  `
+  [ <a href="https://www.researchgate.net/publication/391453960_ClueChain_A_Bayesian_Network-Based_Mystery_Solver_Application" target="_blank">preprint</a> ]
+  [ <a href="https://github.com/nipunsaif/ClueChain" target="_blank">code</a> ]
+
+`;
+var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
+document.getElementById("tableBody").innerHTML += tableRowHTML;
          
 // var imageId = "swave_image";
 // var image1 = "images/swave.png";
