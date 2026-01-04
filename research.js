@@ -18,8 +18,8 @@ document.getElementById("tableBody").innerHTML += tableRowHTML;
 var imageId = "swave_image";
 var image1 = "images/swave.png";
 var image2 = "images/swave2.png";
-var paperTitle = "CareerMAS: A Multi-Agent LLM Framework for Career Guidance and Job Placement in Bangladesh";
-var descriptiom = "This research introduces CareerMAS, a multi-agent LLM-based framework for intelligent career guidance and job placement in Bangladesh. The system integrates web-scraped job market data with machine learning–based salary prediction to deliver personalized career recommendations. Dedicated agents handle job data collection, cleaning, feature extraction, and career counselling using fine-tuned LLMs. Evaluated on over 5,000 real job postings, the framework effectively converts unstructured listings into actionable insights, helping job seekers align skills and expectations with market demands while supporting scalable, data-driven career decision-making.";
+var paperTitle = "Multi-Frequency 3D Shear Wave Absolute Vibro-Elastography (S-WAVE) System for the Prostate";
+var descriptiom = "First-of-a-kind multi-frequency 3D Shear Wave Absolute Vibro-Elastography (S-WAVE) system for the prostate, using a bandpass sampling strategy and transperineal excitation. This system is compatible with both transperineal biopsy and prostate brachytherapy procedures. A S-WAVE based cancer classifier is also designed in this work.";
 var publisherDetailsLinks =  `
                               <em><a href="https://www.ieeetmi.org/" target="_blank">IEEE Transactions on Medical Imaging (TMI)</a>, 2023</em>
                               <br>
