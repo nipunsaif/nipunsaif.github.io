@@ -1,6 +1,6 @@
 var imageId = "ius_2023_image";
-var image1 = "images/ius_2023_1.png";
-var image2 = "images/ius_2023_2.gif";
+var image1 = "images/cmas.jpg";
+// var image2 = "images/ius_2023_2.gif";
 var paperTitle = "CareerMAS: A Multi-Agent LLM Framework for Career Guidance and Job Placement in Bangladesh";
 var descriptiom = "This research presents CareerMAS, a hierarchical multi-agent LLM-based framework for career guidance and job placement in Bangladesh. It integrates web-scraped job data with ML-based salary prediction to deliver personalized recommendations. Specialized agents manage data collection, structuring, and counselling. Evaluated on 5,000+ job postings, the system transforms unstructured listings into actionable insights for scalable, data-driven career decision-making.";
 var publisherDetailsLinks =  `
@@ -8,7 +8,7 @@ var publisherDetailsLinks =  `
   [ <a href="https://github.com/nipunsaif/CareerMAS" target="_blank">code</a> ]
 
 `;
-var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
+var tableRowHTML = generateTableRow(image1, imageId, paperTitle, publisherDetailsLinks, descriptiom);
 document.getElementById("tableBody").innerHTML += tableRowHTML;
          
 // var imageId = "swave_image";
