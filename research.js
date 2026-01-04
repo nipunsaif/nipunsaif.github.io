@@ -4,11 +4,7 @@ var image2 = "images/ius_2023_2.gif";
 var paperTitle = "CareerMAS: A Multi-Agent LLM Framework for Career Guidance and Job Placement in Bangladesh";
 var descriptiom = "This research presents CareerMAS, a hierarchical multi-agent LLM-based framework for career guidance and job placement in Bangladesh. It integrates web-scraped job data with ML-based salary prediction to deliver personalized recommendations. Specialized agents manage data collection, structuring, and counselling. Evaluated on 5,000+ job postings, the system transforms unstructured listings into actionable insights for scalable, data-driven career decision-making.";
 var publisherDetailsLinks =  `
-  <em><a href="https://2023.ieee-ius.org/" target="_blank">IEEE International Ultrasonic Symposium (IUS)</a></em>, Montréal, Canada, 2023
-  <br>
-  <strong style="color:red"> (Oral Presentation; Travel Award)</strong>
-  <br>
-  [ <a href="https://ieeexplore.ieee.org/abstract/document/10306532" target="_blank">Paper</a> ]
+  [ <a href="https://www.researchgate.net/publication/395334813_CareerMAS_A_Multi-Agent_LLM_Framework_for_Career_Guidance_and_Job_Placement_in_Bangladesh?channel=doi&linkId=68bd599283031f0e13f289ab&showFulltext=true" target="_blank">preprint</a> ]
 
 `;
 var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
