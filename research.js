@@ -1,8 +1,8 @@
 var imageId = "ius_2023_image";
 var image1 = "images/ius_2023_1.png";
 var image2 = "images/ius_2023_2.gif";
-var paperTitle = "Implementation of Shear Wave and Strain Elastography with Micro-Ultrasound";
-var descriptiom = "The first ever implementation of elastographic imaging (both strain and shear wave elastography) in a commercial microUS system and thus enabling multi-parametric microUS imaging and enabling improved cancer imaging.";
+var paperTitle = "CareerMAS: A Multi-Agent LLM Framework for Career Guidance and Job Placement in Bangladesh";
+var descriptiom = "This research introduces CareerMAS, a multi-agent LLM-based framework for intelligent career guidance and job placement in Bangladesh. The system integrates web-scraped job market data with machine learning–based salary prediction to deliver personalized career recommendations. Dedicated agents handle job data collection, cleaning, feature extraction, and career counselling using fine-tuned LLMs. Evaluated on over 5,000 real job postings, the framework effectively converts unstructured listings into actionable insights, helping job seekers align skills and expectations with market demands while supporting scalable, data-driven career decision-making.";
 var publisherDetailsLinks =  `
   <em><a href="https://2023.ieee-ius.org/" target="_blank">IEEE International Ultrasonic Symposium (IUS)</a></em>, Montréal, Canada, 2023
   <br>
