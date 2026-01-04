@@ -38,6 +38,20 @@ var publisherDetailsLinks =  `
 `;
 var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
 document.getElementById("tableBody").innerHTML += tableRowHTML;
+
+
+var imageId = "cid4";
+var image1 = "images/d.png";
+var image2 = "";
+var paperTitle = "DiabetIQ: An Intelligent Diabetes Management Application with an Integrated LLM-Augmented RAG Chatbot and ML-Based Risk Early Prediction";
+var descriptiom = "This research presents DiabetIQ, a Flutter-based intelligent diabetes management application integrating an LLM-augmented Retrieval-Augmented Generation (RAG) chatbot with a machine learning–based early risk prediction module. The chatbot provides personalized, context-aware guidance grounded in verified medical literature, enhancing patient engagement and information reliability. In parallel, the ML component analyzes user health data to predict risks such as hypo- and hyperglycemia, enabling early intervention. By combining trustworthy conversational support with proactive risk assessment, DiabetIQ offers a unified, AI-driven framework for personalized and preventive diabetes care.";
+var publisherDetailsLinks =  `
+  [ <a href="https://www.researchgate.net/publication/391479329_DiabetIQ_An_Intelligent_Diabetes_Management_Application_with_an_Integrated_LLM-Augmented_RAG_Chatbot_and_ML-Based_Risk_Early_Prediction" target="_blank">preprint</a> ]
+  [ <a href="https://github.com/nipunsaif/DiabetIQ" target="_blank">code</a> ]
+
+`;
+var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
+document.getElementById("tableBody").innerHTML += tableRowHTML;
          
 // var imageId = "swave_image";
 // var image1 = "images/swave.png";
