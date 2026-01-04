@@ -5,7 +5,7 @@ var paperTitle = "CareerMAS: A Multi-Agent LLM Framework for Career Guidance and
 var descriptiom = "This research presents CareerMAS, a hierarchical multi-agent LLM-based framework for career guidance and job placement in Bangladesh. It integrates web-scraped job data with ML-based salary prediction to deliver personalized recommendations. Specialized agents manage data collection, structuring, and counselling. Evaluated on 5,000+ job postings, the system transforms unstructured listings into actionable insights for scalable, data-driven career decision-making.";
 var publisherDetailsLinks =  `
   [ <a href="https://www.researchgate.net/publication/395334813_CareerMAS_A_Multi-Agent_LLM_Framework_for_Career_Guidance_and_Job_Placement_in_Bangladesh?channel=doi&linkId=68bd599283031f0e13f289ab&showFulltext=true" target="_blank">preprint</a> ]
-  [ <a href="https://www.https://github.com/nipunsaif/CareerMAS" target="_blank">code</a> ]
+  [ <a href="https://github.com/nipunsaif/CareerMAS" target="_blank">code</a> ]
 
 `;
 var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
