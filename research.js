@@ -1,6 +1,5 @@
 var imageId = "cid1";
 var image1 = "images/cmas2.jpg";
-var image2 = "";
 var paperTitle = "CareerMAS: A Multi-Agent LLM Framework for Career Guidance and Job Placement in Bangladesh";
 var descriptiom = "This research presents CareerMAS, a hierarchical multi-agent LLM-based framework for career guidance and job placement in Bangladesh. It integrates web-scraped job data with ML-based salary prediction to deliver personalized recommendations. Specialized agents manage data collection, structuring, and counselling. Evaluated on 5,000+ job postings, the system transforms unstructured listings into actionable insights for scalable, data-driven career decision-making.";
 var publisherDetailsLinks =  `
@@ -8,13 +7,12 @@ var publisherDetailsLinks =  `
   [ <a href="https://github.com/nipunsaif/CareerMAS" target="_blank">code</a> ]
 
 `;
-var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
+var tableRowHTML = generateTableRow(image1, imageId, paperTitle, publisherDetailsLinks, descriptiom);
 document.getElementById("tableBody").innerHTML += tableRowHTML;
 
 
 var imageId = "cid2";
 var image1 = "images/ai.jpeg";
-var image2 = "";
 var paperTitle = "AI-Powered Competitive Programming Code Generation Tool Leveraging Large Language Models";
 var descriptiom = "This research presents an AI-powered competitive programming assistant using large language models to generate, verify, and explain algorithmic solutions. Fine-tuned models (Code LLaMA, StarCoder, Mistral-7B) are trained with LoRA on the APPS dataset. An iterative pipeline integrates self-reflection, execution-based verification, and pedagogical explanations to improve accuracy, reliability, and learning effectiveness.";
 var publisherDetailsLinks =  `
@@ -22,13 +20,12 @@ var publisherDetailsLinks =  `
   [ <a href="https://github.com/nipunsaif/CodeLlama-FT" target="_blank">code</a> ]
 
 `;
-var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
+var tableRowHTML = generateTableRow(image1, imageId, paperTitle, publisherDetailsLinks, descriptiom);
 document.getElementById("tableBody").innerHTML += tableRowHTML;
 
 
 var imageId = "cid3";
 var image1 = "images/cluechain.jpeg";
-var image2 = "";
 var paperTitle = "ClueChain: A Bayesian Network-Based Mystery Solver Application";
 var descriptiom = "ClueChain is a mystery solver application that uses Bayesian networks to solve fictional mystery scenarios. The application allows users to input various clues and evidence related to a crime and then applies Bayesian inference to calculate the probabilities of different suspects being guilty. The system provides an interactive and data-driven way to deduce the most likely suspect based on the provided evidence.";
 var publisherDetailsLinks =  `
@@ -36,28 +33,25 @@ var publisherDetailsLinks =  `
   [ <a href="https://github.com/nipunsaif/ClueChain" target="_blank">code</a> ]
 
 `;
-var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, descriptiom);
+var tableRowHTML = generateTableRow(image1, imageId, paperTitle, publisherDetailsLinks, descriptiom);
 document.getElementById("tableBody").innerHTML += tableRowHTML;
 
 
 var imageId = "cid4";
 var image1 = "images/d.png";
-var image2 = "";
 var paperTitle = "DiabetIQ: An Intelligent Diabetes Management Application with an Integrated LLM-Augmented RAG Chatbot and ML-Based Risk Early Prediction";
 var description = "This research presents DiabetIQ, a Flutter-based intelligent diabetes management application that combines advanced conversational AI with predictive analytics to support personalized and preventive diabetes care. The system integrates a Large Language Model (LLM)–augmented Retrieval-Augmented Generation (RAG) chatbot with a machine learning–based early risk prediction module, creating a unified and patient-centric digital health platform. The RAG-enabled chatbot delivers personalized, context-aware responses grounded in verified and up-to-date medical literature, ensuring information reliability while enhancing patient engagement and self-management. By leveraging retrieval from trusted clinical sources, the chatbot minimizes hallucinations and provides medically consistent guidance tailored to individual user profiles, symptoms, and queries. Complementing the conversational component, the machine learning module analyzes user health data such as glucose levels, lifestyle patterns, and historical trends to predict potential risks, including hypo- and hyperglycemia. Early risk detection enables timely alerts and proactive interventions, supporting both patients and caregivers in making informed decisions. The framework emphasizes accessibility, personalization, and clinical relevance, positioning DiabetIQ as a scalable, AI-driven solution for improving long-term diabetes outcomes, patient awareness, and preventive healthcare delivery.";
-
 var publisherDetailsLinks =  `
   [ <a href="https://www.researchgate.net/publication/391479329_DiabetIQ_An_Intelligent_Diabetes_Management_Application_with_an_Integrated_LLM-Augmented_RAG_Chatbot_and_ML-Based_Risk_Early_Prediction" target="_blank">preprint</a> ]
   [ <a href="https://github.com/nipunsaif/DiabetIQ" target="_blank">code</a> ]
 
 `;
-var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, description);
+var tableRowHTML = generateTableRow(image1, imageId, paperTitle, publisherDetailsLinks, description);
 document.getElementById("tableBody").innerHTML += tableRowHTML;
 
 
 var imageId = "cid5";
 var image1 = "images/7.jpeg";
-var image2 = "";
 var paperTitle = "Combinational and Sequential Logic Circuit Design to display 'IUBFALL' in a Seven-Segment Display by Using 4:1 Multiplexer";
 var description = "This muxed 7-segment display project can be a valuable tool for displaying large amounts of information in a limited space. With the proper hardware and software, we can use it to create a wide variety of interactive displays and projects within a short time and at a minimum cost.";
 var publisherDetailsLinks =  `
@@ -65,7 +59,7 @@ var publisherDetailsLinks =  `
   [ <a href="https://github.com/nipunsaif/seven-segment-display-project" target="_blank">code</a> ]
 
 `;
-var tableRowHTML = generateTableRow(image1, image2, imageId, paperTitle, publisherDetailsLinks, description);
+var tableRowHTML = generateTableRow(image1, imageId, paperTitle, publisherDetailsLinks, description);
 document.getElementById("tableBody").innerHTML += tableRowHTML;
          
 // var imageId = "swave_image";
