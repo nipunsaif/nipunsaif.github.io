@@ -1,6 +1,21 @@
 var imageId = "id1";
 var image1 = "images/cmas2.jpg";
-var image2 = "images/cmas1.jpg";
+// var image2 = "";
+var paperTitle = "CareerMAS: A Multi-Agent LLM Framework for Career Guidance and Job Placement in Bangladesh";
+var descriptiom = "This research presents CareerMAS, a hierarchical multi-agent LLM-based framework for career guidance and job placement in Bangladesh. It integrates web-scraped job data with ML-based salary prediction to deliver personalized recommendations. Specialized agents manage data collection, structuring, and counselling. Evaluated on 5,000+ job postings, the system transforms unstructured listings into actionable insights for scalable, data-driven career decision-making.";
+var publisherDetailsLinks =  `
+  [ <a href="https://www.researchgate.net/publication/395334813_CareerMAS_A_Multi-Agent_LLM_Framework_for_Career_Guidance_and_Job_Placement_in_Bangladesh?channel=doi&linkId=68bd599283031f0e13f289ab&showFulltext=true" target="_blank">preprint</a> ]
+  [ <a href="https://github.com/nipunsaif/CareerMAS" target="_blank">code</a> ]
+
+`;
+var tableRowHTML = generateTableRow(image1, imageId, paperTitle, publisherDetailsLinks, descriptiom);
+document.getElementById("tableBody").innerHTML += tableRowHTML;
+
+
+
+var imageId = "id2";
+var image1 = "images/cmas2.jpg";
+var image2 = "";
 var paperTitle = "CareerMAS: A Multi-Agent LLM Framework for Career Guidance and Job Placement in Bangladesh";
 var descriptiom = "This research presents CareerMAS, a hierarchical multi-agent LLM-based framework for career guidance and job placement in Bangladesh. It integrates web-scraped job data with ML-based salary prediction to deliver personalized recommendations. Specialized agents manage data collection, structuring, and counselling. Evaluated on 5,000+ job postings, the system transforms unstructured listings into actionable insights for scalable, data-driven career decision-making.";
 var publisherDetailsLinks =  `
