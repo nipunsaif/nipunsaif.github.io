@@ -64,7 +64,7 @@
 }
 
 a {
-  color: #1772d0;
+  color: var(--link-color, #1772d0);
   text-decoration: none;
 }
 
@@ -139,4 +139,132 @@ span.highlight {
     padding: 20px;
     display: inline-block;
     border-radius: 10px;
+}
+
+/* ============================================================
+   DARK / LIGHT MODE
+   ============================================================ */
+:root {
+  --body-bg: #ffffff;
+  --text-color: #333333;
+  --link-color: #1772d0;
+  --highlight-bg: #ffffd0;
+}
+
+[data-theme="dark"] {
+  --body-bg: #1a1a2e;
+  --text-color: #c9d1d9;
+  --link-color: #58a6ff;
+  --highlight-bg: #3a3a00;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] a {
+  color: var(--link-color);
+}
+
+[data-theme="dark"] a:focus,
+[data-theme="dark"] a:hover {
+  color: #f09228;
+}
+
+[data-theme="dark"] tr[bgcolor="#ffffd0"] {
+  background-color: #272710 !important;
+}
+
+[data-theme="dark"] tr[bgcolor="#ffffff"] {
+  background-color: #161b22 !important;
+}
+
+[data-theme="dark"] span.highlight {
+  background-color: var(--highlight-bg);
+}
+
+[data-theme="dark"] h2 {
+  color: #e6edf3;
+}
+
+[data-theme="dark"] strong {
+  color: var(--text-color);
+}
+
+[data-theme="dark"] em {
+  color: var(--text-color);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 9999;
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  border-color: #888;
+}
+
+[data-theme="dark"] .theme-toggle {
+  background: #2d333b;
+  color: #cdd9e5;
+  border-color: #444c56;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE — single-column layout on small screens
+   ============================================================ */
+@media screen and (max-width: 600px) {
+  /* Bio section: stack photo below bio text */
+  #bio-section tr {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  #bio-section td {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* Project rows: stack image above description */
+  .project-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .project-row td {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* Scale down project thumbnail containers */
+  .one {
+    width: 120px !important;
+    height: 120px !important;
+    margin: 0 auto;
+  }
+
+  .two {
+    width: 120px !important;
+    height: 120px !important;
+  }
 }
