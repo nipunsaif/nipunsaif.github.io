@@ -1,723 +1,778 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Saif Mohammed</title>
-  <meta name="author" content="Saif Mohammed">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@400;500;600;700;900&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Saif Mohammed</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@400;500;600;700;900&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* =========================================================
+   RESET & VARIABLES
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ─── DESIGN TOKENS ──────────────────────────────────────────────── */
-    :root {
-      /* Valorant Palette (dark default) */
-      --bg:             #0f1923;
-      --surface:        #1f2326;
-      --surface-hover:  #2a2e33;
-      --border:         rgba(255, 70, 85, 0.25);
+:root {
+  /* Valorant Palette — carried from NSU ACM Technovation 3.0 */
+  --val-red:    #ff4655;
+  --val-dark:   #0f1923;
+  --val-black:  #111111;
+  --val-light:  #ece8e1;
+  --val-grey:   #1f2326;
+  --val-muted:  #8b978f;
+  --radianite:  #00ffcc;
 
-      --text-primary:   #ece8e1;
-      --text-body:      #cbd5e1;
-      --text-muted:     #8b978f;
-      --text-dark:      #0f1923;
+  /* Font Stack — same as Technovation page */
+  --font-header: 'Trajan Pro', 'Cinzel', serif;   /* Display / Headers  */
+  --font-serif:  'Newsreader', 'Charter', Georgia, serif; /* Body / Reading    */
+  --font-sans:   'Inter', system-ui, sans-serif;  /* UI / Labels       */
+  --font-mono:   'JetBrains Mono', monospace;     /* Tags / Code       */
+}
 
-      --accent:         #ff4655;
-      --radianite:      #00ffcc;
-      --grid-line:      rgba(236, 232, 225, 0.03);
+html { scroll-behavior: smooth; }
 
-      /* Font Stack */
-      --font-header: 'Trajan Pro', 'Cinzel', serif;
-      --font-serif:  'Newsreader', 'Charter', Georgia, serif;
-      --font-sans:   'Inter', system-ui, sans-serif;
-      --font-mono:   'JetBrains Mono', monospace;
-    }
+body {
+  font-family: var(--font-sans);
+  background: var(--val-dark);
+  color: var(--val-light);
+  margin: 0;
+  overflow-x: hidden;
+}
 
-    /* ─── LIGHT MODE OVERRIDES ───────────────────────────────────────── */
-    [data-theme="light"] {
-      --bg:             #f0ede8;
-      --surface:        #e4e0d9;
-      --surface-hover:  #d8d4cd;
-      --border:         rgba(255, 70, 85, 0.35);
-      --text-primary:   #0f1923;
-      --text-body:      #2a3540;
-      --text-muted:     #5a6b62;
-      --grid-line:      rgba(15, 25, 35, 0.04);
-    }
-    [data-theme="light"] body::before {
-      background-image:
-        linear-gradient(var(--grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    }
-    [data-theme="light"] .bio-name { color: var(--text-primary); }
-    [data-theme="light"] .project-title { color: #0f1923; }
-    [data-theme="light"] .bottom-bar { background: rgba(200,196,189,0.98); }
+/* =========================================================
+   TACTICAL GRID BACKGROUND
+   ========================================================= */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(236, 232, 225, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(236, 232, 225, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
 
-    /* ─── BASE ───────────────────────────────────────────────────────── */
-    html { scroll-behavior: smooth; }
+/* =========================================================
+   RADIANITE CUBE PARTICLES
+   ========================================================= */
+.radianite-particles {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+.cube {
+  position: absolute; bottom: -50px;
+  background: rgba(0, 255, 204, 0.07);
+  border: 1px solid rgba(0, 255, 204, 0.22);
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.12);
+  animation: float-up linear infinite;
+}
+@keyframes float-up {
+  0%   { transform: translateX(0) translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+  20%  { opacity: 0.8; }
+  80%  { opacity: 0.8; }
+  100% { transform: translateX(var(--dx)) translateY(-100vh) scale(1.5) rotate(360deg); opacity: 0; }
+}
 
-    body {
-      font-family: var(--font-sans);
-      background: var(--bg);
-      color: var(--text-primary);
-      margin: 0;
-      overflow-x: hidden;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
+/* =========================================================
+   SITE WRAPPER & LAYOUT
+   ========================================================= */
+.site-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 70px 24px 0;
+}
 
-    /* ─── TACTICAL GRID BACKGROUND ───────────────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background-image:
-        linear-gradient(var(--grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-    }
+/* =========================================================
+   HERO / BIO SECTION
+   ========================================================= */
+.bio-section {
+  display: flex;
+  gap: 55px;
+  align-items: flex-start;
+  margin-bottom: 70px;
+  padding-bottom: 55px;
+  border-bottom: 1px solid rgba(255, 70, 85, 0.18);
+}
 
-    /* ─── RADIANITE CUBE PARTICLES ────────────────────────────────────── */
-    .radianite-particles {
-      position: fixed; inset: 0; z-index: 0;
-      pointer-events: none; overflow: hidden;
-    }
-    .cube {
-      position: absolute; bottom: -50px;
-      background: rgba(0, 255, 204, 0.08);
-      border: 1px solid rgba(0, 255, 204, 0.25);
-      box-shadow: 0 0 12px rgba(0, 255, 204, 0.15);
-      animation: float-up linear infinite;
-    }
-    @keyframes float-up {
-      0%   { transform: translateX(0) translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
-      20%  { opacity: 1; }
-      80%  { opacity: 1; }
-      100% { transform: translateX(var(--dx)) translateY(-100vh) scale(1.5) rotate(360deg); opacity: 0; }
-    }
+.bio-text { flex: 1; }
 
-    /* ─── THEME TOGGLE ───────────────────────────────────────────────── */
-    .theme-toggle {
-      position: fixed;
-      top: 20px; right: 20px; z-index: 200;
-      background: var(--surface);
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 11px; font-weight: 700;
-      padding: 8px 14px;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
-      transition: all 0.25s ease;
-    }
-    .theme-toggle:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
+.bio-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--val-red);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 14px;
+}
 
-    /* ─── MAIN LAYOUT ────────────────────────────────────────────────── */
-    .main-wrapper {
-      position: relative; z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 70px 24px 0;
-    }
+.bio-name {
+  font-family: var(--font-header);
+  font-size: clamp(34px, 5.5vw, 56px);
+  font-weight: 900;
+  color: var(--val-light);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
 
-    /* ─── BIO / HERO SECTION ─────────────────────────────────────────── */
-    .bio-section {
-      display: flex;
-      align-items: flex-start;
-      gap: 36px;
-      margin-bottom: 64px;
-      padding: 36px 32px;
-      background: var(--surface);
-      border-left: 4px solid var(--accent);
-      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%);
-      position: relative;
-      transition: background 0.3s;
-    }
+.bio-intro {
+  font-family: var(--font-serif);
+  font-size: 16.5px;
+  color: #c5cdd5;
+  line-height: 1.75;
+  margin-bottom: 22px;
+}
+.bio-intro a {
+  color: var(--radianite);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(0, 255, 204, 0.4);
+  transition: all 0.2s;
+}
+.bio-intro a:hover {
+  color: #fff;
+  border-bottom-color: rgba(255,255,255,0.6);
+}
 
-    /* scanner line */
-    .bio-section::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      animation: scan 4s ease-in-out infinite;
-      opacity: 0.5;
-    }
-    @keyframes scan {
-      0%, 100% { transform: scaleX(0); opacity: 0; }
-      50%       { transform: scaleX(1); opacity: 0.6; }
-    }
+/* Interest Tags */
+.interest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 24px;
+}
+.interest-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--val-muted);
+  border: 1px solid rgba(139, 151, 143, 0.28);
+  padding: 4px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%);
+  transition: all 0.2s;
+  cursor: default;
+}
+.interest-tag:hover {
+  color: var(--val-light);
+  border-color: rgba(255, 70, 85, 0.5);
+}
 
-    .bio-text { flex: 1; min-width: 0; }
+/* Profile Links */
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.profile-links a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--val-red);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: 1px solid rgba(255, 70, 85, 0.4);
+  padding: 7px 16px;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.profile-links a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--val-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+  z-index: -1;
+}
+.profile-links a:hover { color: var(--val-dark); }
+.profile-links a:hover::before { transform: scaleX(1); }
 
-    .bio-tag {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 14px;
-      display: block;
-      font-weight: 700;
-    }
+/* =========================================================
+   PROFILE PHOTO — HEXAGONAL FRAME
+   ========================================================= */
+.bio-photo-col {
+  flex-shrink: 0;
+  width: 185px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-top: 8px;
+}
 
-    .bio-name {
-      font-family: var(--font-header);
-      font-size: clamp(30px, 5vw, 54px);
-      color: var(--text-primary);
-      text-transform: uppercase;
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-      margin-bottom: 20px;
-      font-weight: 900;
-    }
-    .bio-name em {
-      font-style: normal;
-      color: var(--accent);
-    }
+.photo-hex-frame {
+  position: relative;
+  width: 185px;
+  height: 185px;
+}
+.photo-hex-ring {
+  position: absolute;
+  inset: -4px;
+  background: var(--val-red);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  animation: pulse-ring 3s ease-in-out infinite alternate;
+}
+@keyframes pulse-ring {
+  from { filter: drop-shadow(0 0 6px rgba(255, 70, 85, 0.5)); }
+  to   { filter: drop-shadow(0 0 22px rgba(255, 70, 85, 0.9)); }
+}
+.bio-photo {
+  position: relative;
+  display: block;
+  width: 185px;
+  height: 185px;
+  object-fit: cover;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
 
-    .bio-p {
-      font-family: var(--font-serif);
-      font-size: 16px;
-      color: var(--text-body);
-      line-height: 1.75;
-      margin-bottom: 22px;
-    }
-    .bio-p a {
-      color: var(--radianite);
-      text-decoration: none;
-      border-bottom: 1px dotted rgba(0,255,204,0.5);
-      transition: opacity 0.2s;
-    }
-    .bio-p a:hover { opacity: 0.7; }
+/* =========================================================
+   SECTION HEADER
+   ========================================================= */
+.section-header {
+  margin-bottom: 28px;
+}
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--val-red);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+.section-title {
+  font-family: var(--font-header);
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--val-light);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 2px solid var(--val-red);
+  padding-bottom: 10px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.section-desc {
+  font-family: var(--font-serif);
+  font-size: 15.5px;
+  color: var(--val-muted);
+  line-height: 1.65;
+}
+.section-desc .highlight {
+  background: rgba(255, 70, 85, 0.13);
+  color: #f07b85;
+  padding: 1px 6px;
+  font-style: normal;
+  border: 1px solid rgba(255, 70, 85, 0.2);
+}
 
-    /* Bio link pills */
-    .bio-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .bio-link {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-muted);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 7px 14px;
-      border: 1px solid var(--border);
-      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
-      transition: all 0.22s ease;
-      background: transparent;
-      font-weight: 700;
-    }
-    .bio-link:hover {
-      color: var(--text-primary);
-      border-color: var(--accent);
-      background: rgba(255, 70, 85, 0.08);
-    }
+/* =========================================================
+   PROJECT CARDS
+   ========================================================= */
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 30px;
+}
 
-    /* Profile photo */
-    .bio-photo-wrap {
-      flex-shrink: 0;
-      width: 150px;
-    }
-    .bio-photo {
-      display: block;
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
-      border: 2px solid var(--accent);
-      filter: saturate(0.75) contrast(1.05);
-      transition: filter 0.35s ease, transform 0.35s ease;
-    }
-    .bio-photo:hover {
-      filter: saturate(1.15) contrast(1.0);
-      transform: scale(1.04);
-    }
+.project-card {
+  display: flex;
+  background: var(--val-grey);
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+  border-left: 4px solid transparent;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+}
+/* Hover shine */
+.project-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 88%, rgba(255, 70, 85, 0.07) 100%);
+  pointer-events: none; opacity: 0; transition: opacity 0.3s;
+}
+/* Featured = highlighted projects from original (bgcolor="#ffffd0") */
+.project-card.featured {
+  border-left: 4px solid var(--val-red);
+  background: #22282f;
+}
+.project-card:hover {
+  background: #272d35;
+  border-left: 4px solid var(--val-red);
+  transform: translateX(6px);
+}
+.project-card:hover::after { opacity: 1; }
 
-    /* ─── SECTION HEADER ─────────────────────────────────────────────── */
-    .section-header {
-      margin-bottom: 10px;
-    }
-    .section-title {
-      font-family: var(--font-header);
-      font-size: 20px;
-      letter-spacing: 0.12em;
-      color: var(--text-primary);
-      text-transform: uppercase;
-      font-weight: 700;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 9px;
-      display: inline-block;
-    }
-    .section-lore {
-      font-family: var(--font-serif);
-      font-size: 15px;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      margin-top: 14px;
-      line-height: 1.65;
-    }
-    .section-lore .highlight-note {
-      color: var(--radianite);
-      font-weight: 600;
-    }
+/* Thumbnail */
+.project-thumb {
+  width: 160px;
+  min-width: 160px;
+  overflow: hidden;
+  background: #161c22;
+}
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.45) brightness(0.72);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+.project-card:hover .project-thumb img {
+  filter: saturate(0.85) brightness(0.88);
+  transform: scale(1.04);
+}
 
-    /* ─── PROJECT CARDS ──────────────────────────────────────────────── */
-    .projects-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 64px;
-    }
+/* Content */
+.project-content {
+  padding: 17px 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
 
-    .project-card {
-      display: flex;
-      gap: 22px;
-      align-items: flex-start;
-      background: var(--surface);
-      padding: 22px 22px 20px;
-      position: relative;
-      border-left: 4px solid transparent;
-      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
-      transition: background 0.28s ease, border-color 0.28s ease, transform 0.28s ease;
-      cursor: default;
-    }
-    .project-card::after {
-      content: '';
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(135deg, transparent 90%, rgba(255,70,85,0.08) 100%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.28s;
-    }
-    .project-card:hover {
-      background: var(--surface-hover);
-      border-left-color: var(--accent);
-      transform: translateX(5px);
-    }
-    .project-card:hover::after { opacity: 1; }
+.project-category {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--val-red);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
 
-    /* Highlighted = teal accent by default, switches to red on hover */
-    .project-card.highlighted {
-      border-left-color: var(--radianite);
-    }
-    .project-card.highlighted:hover {
-      border-left-color: var(--accent);
-    }
+.project-title {
+  font-family: var(--font-header);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--val-light);
+  line-height: 1.3;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+  display: block;
+}
+.project-title:hover { color: var(--val-red); }
 
-    /* Project thumbnail */
-    .project-img-wrap {
-      width: 108px;
-      flex-shrink: 0;
-      padding-top: 2px;
-    }
-    .project-img {
-      width: 108px;
-      height: 80px;
-      object-fit: cover;
-      display: block;
-      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%);
-      filter: saturate(0.65) contrast(1.05);
-      transition: filter 0.3s ease;
-    }
-    .project-card:hover .project-img {
-      filter: saturate(1.1) contrast(1.0);
-    }
+.project-authors {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: #707d75;
+  line-height: 1.5;
+}
+.project-authors strong {
+  color: #a8b4ad;
+  font-style: normal;
+  font-weight: 600;
+}
+.project-authors a {
+  color: #707d75;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(112, 125, 117, 0.3);
+  transition: all 0.2s;
+}
+.project-authors a:hover {
+  color: var(--radianite);
+  border-bottom-color: var(--radianite);
+}
 
-    /* Project text */
-    .project-content { flex: 1; min-width: 0; }
+.project-venue {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: #525c55;
+  letter-spacing: 0.04em;
+  font-style: italic;
+}
 
-    .project-venue {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 7px;
-      font-weight: 700;
-    }
+.project-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+.project-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--val-red);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-bottom: 1px solid rgba(255, 70, 85, 0.35);
+  padding-bottom: 1px;
+  transition: all 0.2s;
+}
+.project-links a:hover {
+  color: var(--val-light);
+  border-bottom-color: rgba(236, 232, 225, 0.5);
+}
 
-    .project-title {
-      font-family: var(--font-header);
-      font-size: 14.5px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 7px;
-      line-height: 1.35;
-      text-transform: uppercase;
-      letter-spacing: 0.025em;
-    }
+.project-desc {
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  color: #909aa0;
+  line-height: 1.65;
+  margin-top: 2px;
+}
 
-    .project-authors {
-      font-family: var(--font-serif);
-      font-size: 13.5px;
-      color: var(--text-muted);
-      margin-bottom: 9px;
-      line-height: 1.5;
-    }
-    .project-authors strong {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
+/* =========================================================
+   BOTTOM BAR / FOOTER
+   ========================================================= */
+.bottom-bar {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  background: rgba(9, 13, 18, 0.97);
+  border-top: 2px solid var(--val-red);
+  padding: 26px 20px;
+  text-align: center;
+  margin-top: 70px;
+  z-index: 2;
+}
+.bb-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.bb-name {
+  font-family: var(--font-header);
+  font-size: 17px;
+  color: var(--val-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.bb-contact {
+  font-size: 13px;
+  color: var(--val-muted);
+  margin-bottom: 15px;
+  line-height: 1.7;
+}
+.bb-contact a {
+  color: var(--radianite);
+  text-decoration: none;
+  font-weight: 600;
+}
+.bb-contact a:hover { text-decoration: underline; }
+.bb-copyright {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #404040;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.bb-copyright span { color: var(--val-muted); }
+.bb-copyright a {
+  color: var(--val-muted);
+  text-decoration: none;
+}
+.bb-copyright a:hover { color: var(--val-light); }
 
-    .project-desc {
-      font-family: var(--font-serif);
-      font-size: 14px;
-      color: var(--text-body);
-      line-height: 1.65;
-      margin-bottom: 12px;
-    }
+/* =========================================================
+   CUSTOM SCROLLBAR
+   ========================================================= */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--val-dark); }
+::-webkit-scrollbar-thumb { background: var(--val-red); border-radius: 2px; }
 
-    .project-links {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-    .project-links a {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--radianite);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 700;
-      border-bottom: 1px dotted rgba(0, 255, 204, 0.4);
-      padding-bottom: 1px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .project-links a:hover {
-      color: var(--text-primary);
-      border-color: transparent;
-    }
-    .project-links .sep {
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      user-select: none;
-    }
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 700px) {
+  .site-wrapper { padding: 40px 16px 0; }
+  .bio-section {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+  }
+  .bio-photo-col { width: 150px; }
+  .photo-hex-frame { width: 150px; height: 150px; }
+  .photo-hex-ring { inset: -3px; }
+  .bio-photo { width: 150px; height: 150px; }
+  .interest-tags { justify-content: center; }
+  .profile-links { justify-content: center; }
+  .project-card { flex-direction: column; }
+  .project-thumb {
+    width: 100%; min-width: unset;
+    height: 130px;
+  }
+}
 
-    /* ─── FOOTER ─────────────────────────────────────────────────────── */
-    .bottom-bar {
-      width: 100%;
-      background: rgba(13, 17, 20, 0.96);
-      border-top: 2px solid var(--accent);
-      padding: 22px 24px;
-      text-align: center;
-      position: relative; z-index: 1;
-      transition: background 0.3s;
-    }
-    .bb-content {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .bb-copyright {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: #444;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .bb-copyright a {
-      color: var(--text-muted);
-      text-decoration: none;
-      border-bottom: 1px dotted #555;
-      transition: color 0.2s;
-    }
-    .bb-copyright a:hover { color: var(--text-primary); }
-    .bb-copyright span { color: var(--text-muted); }
-
-    /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
-    @media (max-width: 640px) {
-      .main-wrapper { padding: 60px 16px 0; }
-      .bio-section {
-        flex-direction: column-reverse;
-        align-items: center;
-        text-align: center;
-        padding: 28px 20px;
-      }
-      .bio-links { justify-content: center; }
-      .bio-photo-wrap { width: 120px; }
-      .bio-photo { width: 120px; height: 120px; }
-      .project-img-wrap { display: none; }
-      .bb-copyright { justify-content: center; text-align: center; }
-    }
-  </style>
-
-  <script>
-    /* Apply saved theme before paint to avoid flash */
-    (function () {
-      var t = localStorage.getItem('theme');
-      if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
-    })();
-  </script>
+</style>
 </head>
 <body>
 
-<!-- ── PARTICLES ──────────────────────────────────────────────────────── -->
+<!-- ============================================================
+     RADIANITE CUBE PARTICLES
+     ============================================================ -->
 <div class="radianite-particles" id="particles"></div>
 
-<!-- ── THEME TOGGLE ───────────────────────────────────────────────────── -->
-<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">🌙 Dark</button>
+<div class="site-wrapper">
 
-<!-- ── MAIN CONTENT ───────────────────────────────────────────────────── -->
-<div class="main-wrapper">
+  <!-- ==========================================================
+       BIO / HERO
+       ========================================================== -->
+  <section class="bio-section">
 
-  <!-- BIO SECTION -->
-  <div class="bio-section">
     <div class="bio-text">
-      <span class="bio-tag">// NSU ACM SC &nbsp;·&nbsp; R&amp;D Coordinator &amp; Academic Mentor &nbsp;·&nbsp; Web Group Moderator</span>
+      <span class="bio-eyebrow">// CSE Undergraduate &middot; North South University</span>
+      <h1 class="bio-name">Saif<br/>Mohammed</h1>
 
-      <h1 class="bio-name">Saif<br/><em>Mohammed</em></h1>
-
-      <p class="bio-p">
+      <p class="bio-intro">
         I'm a Computer Science and Engineering undergraduate student at
         <a href="https://www.northsouth.edu/">North South University</a> in Dhaka, Bangladesh.
         I work on artificial intelligence and modern software systems.
-        I serve as the Coordinator and Academic Mentor of the R&amp;D Group and as the Moderator of the Web Group at the
+        I serve as the Coordinator and Academic Mentor of the R&amp;D Group and as the
+        Moderator of the Web Group at the
         <a href="https://nsusc.acm.org/">NSU ACM Student Chapter</a>.
-        My interests include Artificial Intelligence, Machine Learning, Deep Learning, Natural Language Processing,
-        Computer Vision, Software Engineering, and Database Systems.
       </p>
 
-      <div class="bio-links">
-        <a href="mailto:saif.mohammed@northsouth.edu" class="bio-link">✉ Email</a>
-        <a href="data/Saif-Mohammed-Resume.pdf"        class="bio-link">↓ Resume</a>
-        <a href="https://x.com/nipunsaif"              class="bio-link">𝕏 Twitter</a>
-        <a href="https://github.com/nipunsaif/"        class="bio-link">⌥ Github</a>
-        <a href="https://www.researchgate.net/profile/Saif-Mohammed-18" class="bio-link">◈ ResearchGate</a>
+      <div class="interest-tags">
+        <span class="interest-tag">Artificial Intelligence</span>
+        <span class="interest-tag">Machine Learning</span>
+        <span class="interest-tag">Deep Learning</span>
+        <span class="interest-tag">NLP</span>
+        <span class="interest-tag">Computer Vision</span>
+        <span class="interest-tag">Generative AI</span>
+        <span class="interest-tag">Software Engineering</span>
+        <span class="interest-tag">Database Systems</span>
+      </div>
+
+      <div class="profile-links">
+        <a href="mailto:saif.mohammed@northsouth.edu">Email</a>
+        <a href="data/Saif-Mohammed-Resume.pdf">Resume</a>
+        <a href="https://x.com/nipunsaif" target="_blank">Twitter</a>
+        <a href="https://github.com/nipunsaif/" target="_blank">Github</a>
+        <a href="https://www.researchgate.net/profile/Saif-Mohammed-18" target="_blank">ResearchGate</a>
       </div>
     </div>
 
-    <div class="bio-photo-wrap">
-      <a href="images/SaifM.jpeg">
-        <img src="images/SaifM.jpeg" alt="Saif Mohammed" class="bio-photo" />
-      </a>
-    </div>
-  </div>
-
-  <!-- RESEARCH SECTION -->
-  <div class="section-header">
-    <h2 class="section-title">Selected Research Projects</h2>
-  </div>
-  <p class="section-lore">
-    My research lies at the intersection of Artificial Intelligence and the Internet of Things.
-    I specialize in Deep Learning, with a specific focus on Computer Vision, Natural Language Processing, and Generative AI.
-    Key reports are <span class="highlight-note">highlighted</span> below.
-  </p>
-
-  <div class="projects-grid">
-
-    <!-- ① CareerMAS — highlighted -->
-    <div class="project-card highlighted">
-      <div class="project-img-wrap">
-        <img src="images/CareerMAS.jpeg" alt="CareerMAS" class="project-img" />
-      </div>
-      <div class="project-content">
-        <div class="project-venue">// Machine Learning &nbsp;·&nbsp; University Project &nbsp;·&nbsp; 2025</div>
-        <div class="project-title">CareerMAS: A Multi-Agent LLM Framework for Career Guidance and Job Placement in Bangladesh</div>
-        <div class="project-authors">
-          <strong>Saif Mohammed</strong>,
-          Humayra Rahman Nipa,
-          Ankita Kundu,
-          Sabab Ashfak Fahim
-        </div>
-        <div class="project-desc">
-          A multi-agent framework integrating web-scraped data and ML-based salary prediction to provide personalized career
-          recommendations. Using fine-tuned LLMs, it converts unstructured job listings into actionable insights to align
-          job seekers with market demands in Bangladesh.
-        </div>
-        <div class="project-links">
-          <a href="https://www.researchgate.net/publication/395334813_CareerMAS_A_Multi-Agent_LLM_Framework_for_Career_Guidance_and_Job_Placement_in_Bangladesh?channel=doi&linkId=68bd599283031f0e13f289ab&showFulltext=true">Report</a>
-          <span class="sep">/</span>
-          <a href="https://github.com/nipunsaif/CareerMAS">Code</a>
-        </div>
+    <div class="bio-photo-col">
+      <div class="photo-hex-frame">
+        <div class="photo-hex-ring"></div>
+        <img src="images/SaifM.jpeg" alt="Saif Mohammed" class="bio-photo"/>
       </div>
     </div>
 
-    <!-- ② DiabetIQ -->
-    <div class="project-card">
-      <div class="project-img-wrap">
-        <img src="images/DiabetIQ.jpeg" alt="DiabetIQ" class="project-img" />
-      </div>
-      <div class="project-content">
-        <div class="project-venue">// Junior Design Project &nbsp;·&nbsp; University Project &nbsp;·&nbsp; 2025</div>
-        <div class="project-title">DiabetIQ: An Intelligent Diabetes Management Application with an Integrated LLM-Augmented Chatbot and Machine Learning-Driven Early Risk Prediction</div>
-        <div class="project-authors">
-          <strong>Saif Mohammed</strong>,
-          Nazibul Islam Nabil,
-          Humayra Rahman Nipa,
-          Umme Suraia Haque Setu
-        </div>
-        <div class="project-desc">
-          A Flutter-based health framework combining an LLM-augmented RAG chatbot for verifiable medical advice with
-          ML-based early risk prediction. The system analyzes user health data to predict hypo- and hyperglycemia risks,
-          enabling proactive diabetes care.
-        </div>
-        <div class="project-links">
-          <a href="https://www.researchgate.net/publication/391479329_DiabetIQ_An_Intelligent_Diabetes_Management_Application_with_an_Integrated_LLM-Augmented_RAG_Chatbot_and_ML-Based_Risk_Early_Prediction">Report</a>
-          <span class="sep">/</span>
-          <a href="https://github.com/nipunsaif/DiabetIQ">Code</a>
-        </div>
-      </div>
+  </section>
+
+  <!-- ==========================================================
+       SELECTED RESEARCH PROJECTS
+       ========================================================== -->
+  <section>
+
+    <div class="section-header">
+      <span class="section-eyebrow">// Research Output</span>
+      <h2 class="section-title">Selected Research Projects</h2>
+      <p class="section-desc">
+        My research lies at the intersection of Artificial Intelligence and the Internet of Things.
+        I specialize in Deep Learning, with a specific focus on Computer Vision, Natural Language Processing,
+        and Generative AI. Key reports are <span class="highlight">highlighted</span> below.
+      </p>
     </div>
 
-    <!-- ③ ClueChain — highlighted -->
-    <div class="project-card highlighted">
-      <div class="project-img-wrap">
-        <img src="images/Clue.jpeg" alt="ClueChain" class="project-img" />
+    <div class="projects-list">
+
+      <!-- ── CareerMAS ── (featured / highlighted) -->
+      <div class="project-card featured">
+        <div class="project-thumb">
+          <img src="images/CareerMAS.jpeg" alt="CareerMAS"/>
+        </div>
+        <div class="project-content">
+          <div class="project-category">// Multi-Agent LLM &middot; Machine Learning</div>
+          <a href="https://www.researchgate.net/publication/395334813_CareerMAS_A_Multi-Agent_LLM_Framework_for_Career_Guidance_and_Job_Placement_in_Bangladesh?channel=doi&linkId=68bd599283031f0e13f289ab&showFulltext=true"
+             class="project-title" target="_blank">
+            CareerMAS: A Multi-Agent LLM Framework for Career Guidance and Job Placement in Bangladesh
+          </a>
+          <div class="project-authors">
+            <strong>Saif Mohammed</strong>,
+            <a href="#">Humayra Rahman Nipa</a>,
+            <a href="#">Ankita Kundu</a>,
+            <a href="#">Sabab Ashfak Fahim</a>
+          </div>
+          <div class="project-venue">University Project / Machine Learning, 2025</div>
+          <div class="project-links">
+            <a href="https://www.researchgate.net/publication/395334813_CareerMAS_A_Multi-Agent_LLM_Framework_for_Career_Guidance_and_Job_Placement_in_Bangladesh?channel=doi&linkId=68bd599283031f0e13f289ab&showFulltext=true" target="_blank">Report ↗</a>
+            <a href="https://github.com/nipunsaif/CareerMAS" target="_blank">Code ↗</a>
+          </div>
+          <div class="project-desc">
+            A multi-agent framework integrating web-scraped data and ML-based salary prediction to provide personalized career recommendations. Using fine-tuned LLMs, it converts unstructured job listings into actionable insights to align job seekers with market demands in Bangladesh.
+          </div>
+        </div>
       </div>
-      <div class="project-content">
-        <div class="project-venue">// Artificial Intelligence &nbsp;·&nbsp; University Project &nbsp;·&nbsp; 2025</div>
-        <div class="project-title">ClueChain: A Bayesian Network-Based Mystery Solver Application</div>
-        <div class="project-authors">
-          <strong>Saif Mohammed</strong>,
-          Humayra Rahman Nipa,
-          Mainul Kaysar,
-          Jannatul Islam,
-          Saif Uz Zaman
+
+      <!-- ── DiabetIQ ── -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <img src="images/DiabetIQ.jpeg" alt="DiabetIQ"/>
         </div>
-        <div class="project-desc">
-          An interactive application that applies Bayesian inference to fictional mystery scenarios. Users input clues
-          and evidence, and the system calculates the probabilities of different suspects, offering a data-driven
-          approach to deduction.
-        </div>
-        <div class="project-links">
-          <a href="https://www.researchgate.net/publication/391453960_ClueChain_A_Bayesian_Network-Based_Mystery_Solver_Application">Report</a>
-          <span class="sep">/</span>
-          <a href="https://github.com/nipunsaif/ClueChain">Code</a>
+        <div class="project-content">
+          <div class="project-category">// LLM &middot; RAG Chatbot &middot; ML Risk Prediction</div>
+          <a href="https://www.researchgate.net/publication/391479329_DiabetIQ_An_Intelligent_Diabetes_Management_Application_with_an_Integrated_LLM-Augmented_RAG_Chatbot_and_ML-Based_Risk_Early_Prediction"
+             class="project-title" target="_blank">
+            DiabetIQ: An Intelligent Diabetes Management Application with an Integrated LLM-Augmented Chatbot and Machine Learning-Driven Early Risk Prediction
+          </a>
+          <div class="project-authors">
+            <strong>Saif Mohammed</strong>,
+            <a href="#">Nazibul Islam Nabil</a>,
+            <a href="#">Humayra Rahman Nipa</a>,
+            <a href="#">Umme Suraia Haque Setu</a>
+          </div>
+          <div class="project-venue">University Project / Junior Design Project, 2025</div>
+          <div class="project-links">
+            <a href="https://www.researchgate.net/publication/391479329_DiabetIQ_An_Intelligent_Diabetes_Management_Application_with_an_Integrated_LLM-Augmented_RAG_Chatbot_and_ML-Based_Risk_Early_Prediction" target="_blank">Report ↗</a>
+            <a href="https://github.com/nipunsaif/DiabetIQ" target="_blank">Code ↗</a>
+          </div>
+          <div class="project-desc">
+            A Flutter-based health framework combining an LLM-augmented RAG chatbot for verifiable medical advice with ML-based early risk prediction. The system analyzes user health data to predict hypo- and hyperglycemia risks, enabling proactive diabetes care.
+          </div>
         </div>
       </div>
+
+      <!-- ── ClueChain ── (featured / highlighted) -->
+      <div class="project-card featured">
+        <div class="project-thumb">
+          <img src="images/Clue.jpeg" alt="ClueChain"/>
+        </div>
+        <div class="project-content">
+          <div class="project-category">// Bayesian Inference &middot; Artificial Intelligence</div>
+          <a href="https://www.researchgate.net/publication/391453960_ClueChain_A_Bayesian_Network-Based_Mystery_Solver_Application"
+             class="project-title" target="_blank">
+            ClueChain: A Bayesian Network-Based Mystery Solver Application
+          </a>
+          <div class="project-authors">
+            <strong>Saif Mohammed</strong>,
+            <a href="#">Humayra Rahman Nipa</a>,
+            <a href="#">Mainul Kaysar</a>,
+            <a href="#">Jannatul Islam</a>,
+            <a href="#">Saif Uz Zaman</a>
+          </div>
+          <div class="project-venue">University Project / Artificial Intelligence, 2025</div>
+          <div class="project-links">
+            <a href="https://www.researchgate.net/publication/391453960_ClueChain_A_Bayesian_Network-Based_Mystery_Solver_Application" target="_blank">Report ↗</a>
+            <a href="https://github.com/nipunsaif/ClueChain" target="_blank">Code ↗</a>
+          </div>
+          <div class="project-desc">
+            An interactive application that applies Bayesian inference to fictional mystery scenarios. Users input clues and evidence, and the system calculates the probabilities of different suspects, offering a data-driven approach to deduction.
+          </div>
+        </div>
+      </div>
+
+      <!-- ── AI CP Code Generation ── -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <img src="images/AI.jpeg" alt="AI-Powered CP Tool"/>
+        </div>
+        <div class="project-content">
+          <div class="project-category">// Code LLaMA &middot; Mistral-7B &middot; Deep Learning</div>
+          <a href="https://www.researchgate.net/publication/395178878_AI-Powered_Competitive_Programming_Code_Generation_Tool_Leveraging_Large_Language_Models"
+             class="project-title" target="_blank">
+            AI-Powered Competitive Programming Code Generation Tool Leveraging Large Language Models
+          </a>
+          <div class="project-authors">
+            <strong>Saif Mohammed</strong>,
+            <a href="#">Shawal Kabir Chy.</a>,
+            <a href="#">Sadia Ibnat Isamoni</a>,
+            <a href="#">Humayra Rahman Nipa</a>
+          </div>
+          <div class="project-venue">University Project / Deep Learning, 2025</div>
+          <div class="project-links">
+            <a href="https://www.researchgate.net/publication/395178878_AI-Powered_Competitive_Programming_Code_Generation_Tool_Leveraging_Large_Language_Models" target="_blank">Report ↗</a>
+            <a href="https://github.com/nipunsaif/CodeLlama-FT" target="_blank">Code ↗</a>
+          </div>
+          <div class="project-desc">
+            An iterative pipeline using Code LLaMA and Mistral-7B to generate, verify, and explain algorithmic solutions. By combining self-reflection with execution-based debugging, the system improves solution accuracy and provides pedagogical support for competitive programming.
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 7-Segment LED ── (featured / highlighted) -->
+      <div class="project-card featured">
+        <div class="project-thumb">
+          <img src="images/IUB.jpeg" alt="7-Segment LED Display"/>
+        </div>
+        <div class="project-content">
+          <div class="project-category">// Digital Logic Design &middot; Hardware</div>
+          <a href="https://www.researchgate.net/publication/367350642_Project_Report_on_Designing_a_Combinational_and_Sequential_Logic_Circuit_to_display_IUBFALL_in_a_Seven-Segment_Display"
+             class="project-title" target="_blank">
+            7 Segment LED Display Project: Combinational and Sequential Logic Circuit Design to display "IUBFALL"
+          </a>
+          <div class="project-authors">
+            <strong>Saif Mohammed</strong>,
+            <a href="#">Al Zamee</a>,
+            <a href="#">Humayra Rahman Nipa</a>,
+            <a href="#">Umme Suraia Haque Setu</a>
+          </div>
+          <div class="project-venue">University Project / Digital Logic Design, 2023</div>
+          <div class="project-links">
+            <a href="https://www.researchgate.net/publication/367350642_Project_Report_on_Designing_a_Combinational_and_Sequential_Logic_Circuit_to_display_IUBFALL_in_a_Seven-Segment_Display" target="_blank">Report ↗</a>
+            <a href="https://github.com/nipunsaif/7-Segment-LED-Display-Project" target="_blank">Simulation ↗</a>
+          </div>
+          <div class="project-desc">
+            A hardware implementation utilizing a 4:1 Multiplexer and seven-segment display to visualize the text sequence "IUBFALL". This project demonstrates cost-effective and rapid prototyping of interactive displays using fundamental logic circuit design.
+          </div>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-    <!-- ④ CP LLM -->
-    <div class="project-card">
-      <div class="project-img-wrap">
-        <img src="images/AI.jpeg" alt="CP Code Generation" class="project-img" />
-      </div>
-      <div class="project-content">
-        <div class="project-venue">// Deep Learning &nbsp;·&nbsp; University Project &nbsp;·&nbsp; 2025</div>
-        <div class="project-title">AI-Powered Competitive Programming Code Generation Tool Leveraging Large Language Models</div>
-        <div class="project-authors">
-          <strong>Saif Mohammed</strong>,
-          Shawal Kabir Chy.,
-          Sadia Ibnat Isamoni,
-          Humayra Rahman Nipa
-        </div>
-        <div class="project-desc">
-          An iterative pipeline using Code LLaMA and Mistral-7B to generate, verify, and explain algorithmic solutions.
-          By combining self-reflection with execution-based debugging, the system improves solution accuracy and provides
-          pedagogical support for competitive programming.
-        </div>
-        <div class="project-links">
-          <a href="https://www.researchgate.net/publication/395178878_AI-Powered_Competitive_Programming_Code_Generation_Tool_Leveraging_Large_Language_Models">Report</a>
-          <span class="sep">/</span>
-          <a href="https://github.com/nipunsaif/CodeLlama-FT">Code</a>
-        </div>
-      </div>
-    </div>
+</div><!-- /site-wrapper -->
 
-    <!-- ⑤ 7-Segment LED — highlighted -->
-    <div class="project-card highlighted">
-      <div class="project-img-wrap">
-        <img src="images/IUB.jpeg" alt="7 Segment LED Display" class="project-img" />
-      </div>
-      <div class="project-content">
-        <div class="project-venue">// Digital Logic Design &nbsp;·&nbsp; University Project &nbsp;·&nbsp; 2023</div>
-        <div class="project-title">7 Segment LED Display Project: Combinational and Sequential Logic Circuit Design to Display "IUBFALL"</div>
-        <div class="project-authors">
-          <strong>Saif Mohammed</strong>,
-          Al Zamee,
-          Humayra Rahman Nipa,
-          Umme Suraia Haque Setu
-        </div>
-        <div class="project-desc">
-          A hardware implementation utilizing a 4:1 Multiplexer and seven-segment display to visualize the text
-          sequence "IUBFALL". This project demonstrates cost-effective and rapid prototyping of interactive displays
-          using fundamental logic circuit design.
-        </div>
-        <div class="project-links">
-          <a href="https://www.researchgate.net/publication/367350642_Project_Report_on_Designing_a_Combinational_and_Sequential_Logic_Circuit_to_display_IUBFALL_in_a_Seven-Segment_Display">Report</a>
-          <span class="sep">/</span>
-          <a href="https://github.com/nipunsaif/7-Segment-LED-Display-Project">Simulation</a>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /projects-grid -->
-
-</div><!-- /main-wrapper -->
-
-<!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
-<div class="bottom-bar">
+<!-- ==========================================================
+     BOTTOM BAR / FOOTER
+     ========================================================== -->
+<footer class="bottom-bar">
   <div class="bb-content">
+    <div class="bb-name">Saif Mohammed</div>
+    <div class="bb-contact">
+      <a href="mailto:saif.mohammed@northsouth.edu">saif.mohammed@northsouth.edu</a><br/>
+      Department of ECE, North South University, Bashundhara R/A, Dhaka-1229, Bangladesh.
+    </div>
     <div class="bb-copyright">
-      <div>© 2026 Saif Mohammed · North South University</div>
-      <div>
-        Template by <a href="https://github.com/jonbarron/jonbarron_website" target="_blank">Jon Barron</a>
-        &nbsp;·&nbsp;
-        Developed by <span>NSU ACM SC Web Group</span>
-      </div>
+      <div>© 2025 Saif Mohammed. All Rights Reserved.</div>
+      <div>Template adapted from <span><a href="https://github.com/jonbarron/jonbarron_website" target="_blank">Jon Barron</a></span></div>
     </div>
   </div>
-</div>
+</footer>
 
-<!-- ── SCRIPTS ────────────────────────────────────────────────────────── -->
+<!-- ==========================================================
+     RADIANITE PARTICLES SCRIPT
+     ========================================================== -->
 <script>
-  /* ── Radianite Cube Particles ── */
-  (function () {
-    const wrap = document.getElementById('particles');
-    for (let i = 0; i < 18; i++) {
-      const cube = document.createElement('div');
-      cube.className = 'cube';
-      const size = Math.random() * 28 + 8;
-      cube.style.cssText = `
-        left:${Math.random() * 100}%;
-        width:${size}px; height:${size}px;
-        --dx:${(Math.random() - 0.5) * 160}px;
-        animation-duration:${Math.random() * 9 + 7}s;
-        animation-delay:${Math.random() * 6}s;
-      `;
-      wrap.appendChild(cube);
-    }
-  })();
-
-  /* ── Theme Toggle ── */
-  (function () {
-    const btn = document.getElementById('theme-toggle');
-    if (document.documentElement.getAttribute('data-theme') === 'light') {
-      if (btn) btn.textContent = '☀️ Light';
-    }
-
-    window.toggleTheme = function () {
-      const html = document.documentElement;
-      const isLight = html.getAttribute('data-theme') === 'light';
-      if (isLight) {
-        html.removeAttribute('data-theme');
-        btn.textContent = '🌙 Dark';
-        localStorage.setItem('theme', 'dark');
-      } else {
-        html.setAttribute('data-theme', 'light');
-        btn.textContent = '☀️ Light';
-        localStorage.setItem('theme', 'light');
-      }
-    };
-  })();
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 18; i++) {
+    const cube = document.createElement('div');
+    cube.className = 'cube';
+    const size = Math.random() * 28 + 8;
+    cube.style.cssText = `
+      left: ${Math.random() * 100}%;
+      width: ${size}px;
+      height: ${size}px;
+      --dx: ${(Math.random() - 0.5) * 180}px;
+      animation-duration: ${Math.random() * 10 + 8}s;
+      animation-delay: ${Math.random() * 7}s;
+    `;
+    container.appendChild(cube);
+  }
 </script>
 
 </body>

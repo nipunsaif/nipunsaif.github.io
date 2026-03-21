@@ -1,0 +1,724 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Saif Mohammed</title>
+  <meta name="author" content="Saif Mohammed">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@400;500;600;700;900&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── DESIGN TOKENS ──────────────────────────────────────────────── */
+    :root {
+      /* Valorant Palette (dark default) */
+      --bg:             #0f1923;
+      --surface:        #1f2326;
+      --surface-hover:  #2a2e33;
+      --border:         rgba(255, 70, 85, 0.25);
+
+      --text-primary:   #ece8e1;
+      --text-body:      #cbd5e1;
+      --text-muted:     #8b978f;
+      --text-dark:      #0f1923;
+
+      --accent:         #ff4655;
+      --radianite:      #00ffcc;
+      --grid-line:      rgba(236, 232, 225, 0.03);
+
+      /* Font Stack */
+      --font-header: 'Trajan Pro', 'Cinzel', serif;
+      --font-serif:  'Newsreader', 'Charter', Georgia, serif;
+      --font-sans:   'Inter', system-ui, sans-serif;
+      --font-mono:   'JetBrains Mono', monospace;
+    }
+
+    /* ─── LIGHT MODE OVERRIDES ───────────────────────────────────────── */
+    [data-theme="light"] {
+      --bg:             #f0ede8;
+      --surface:        #e4e0d9;
+      --surface-hover:  #d8d4cd;
+      --border:         rgba(255, 70, 85, 0.35);
+      --text-primary:   #0f1923;
+      --text-body:      #2a3540;
+      --text-muted:     #5a6b62;
+      --grid-line:      rgba(15, 25, 35, 0.04);
+    }
+    [data-theme="light"] body::before {
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    }
+    [data-theme="light"] .bio-name { color: var(--text-primary); }
+    [data-theme="light"] .project-title { color: #0f1923; }
+    [data-theme="light"] .bottom-bar { background: rgba(200,196,189,0.98); }
+
+    /* ─── BASE ───────────────────────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      margin: 0;
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* ─── TACTICAL GRID BACKGROUND ───────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    /* ─── RADIANITE CUBE PARTICLES ────────────────────────────────────── */
+    .radianite-particles {
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none; overflow: hidden;
+    }
+    .cube {
+      position: absolute; bottom: -50px;
+      background: rgba(0, 255, 204, 0.08);
+      border: 1px solid rgba(0, 255, 204, 0.25);
+      box-shadow: 0 0 12px rgba(0, 255, 204, 0.15);
+      animation: float-up linear infinite;
+    }
+    @keyframes float-up {
+      0%   { transform: translateX(0) translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+      20%  { opacity: 1; }
+      80%  { opacity: 1; }
+      100% { transform: translateX(var(--dx)) translateY(-100vh) scale(1.5) rotate(360deg); opacity: 0; }
+    }
+
+    /* ─── THEME TOGGLE ───────────────────────────────────────────────── */
+    .theme-toggle {
+      position: fixed;
+      top: 20px; right: 20px; z-index: 200;
+      background: var(--surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 700;
+      padding: 8px 14px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+      transition: all 0.25s ease;
+    }
+    .theme-toggle:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ─── MAIN LAYOUT ────────────────────────────────────────────────── */
+    .main-wrapper {
+      position: relative; z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 70px 24px 0;
+    }
+
+    /* ─── BIO / HERO SECTION ─────────────────────────────────────────── */
+    .bio-section {
+      display: flex;
+      align-items: flex-start;
+      gap: 36px;
+      margin-bottom: 64px;
+      padding: 36px 32px;
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%);
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    /* scanner line */
+    .bio-section::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: scan 4s ease-in-out infinite;
+      opacity: 0.5;
+    }
+    @keyframes scan {
+      0%, 100% { transform: scaleX(0); opacity: 0; }
+      50%       { transform: scaleX(1); opacity: 0.6; }
+    }
+
+    .bio-text { flex: 1; min-width: 0; }
+
+    .bio-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 14px;
+      display: block;
+      font-weight: 700;
+    }
+
+    .bio-name {
+      font-family: var(--font-header);
+      font-size: clamp(30px, 5vw, 54px);
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+    .bio-name em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .bio-p {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      color: var(--text-body);
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+    .bio-p a {
+      color: var(--radianite);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(0,255,204,0.5);
+      transition: opacity 0.2s;
+    }
+    .bio-p a:hover { opacity: 0.7; }
+
+    /* Bio link pills */
+    .bio-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .bio-link {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
+      transition: all 0.22s ease;
+      background: transparent;
+      font-weight: 700;
+    }
+    .bio-link:hover {
+      color: var(--text-primary);
+      border-color: var(--accent);
+      background: rgba(255, 70, 85, 0.08);
+    }
+
+    /* Profile photo */
+    .bio-photo-wrap {
+      flex-shrink: 0;
+      width: 150px;
+    }
+    .bio-photo {
+      display: block;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+      border: 2px solid var(--accent);
+      filter: saturate(0.75) contrast(1.05);
+      transition: filter 0.35s ease, transform 0.35s ease;
+    }
+    .bio-photo:hover {
+      filter: saturate(1.15) contrast(1.0);
+      transform: scale(1.04);
+    }
+
+    /* ─── SECTION HEADER ─────────────────────────────────────────────── */
+    .section-header {
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--font-header);
+      font-size: 20px;
+      letter-spacing: 0.12em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      font-weight: 700;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 9px;
+      display: inline-block;
+    }
+    .section-lore {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      margin-top: 14px;
+      line-height: 1.65;
+    }
+    .section-lore .highlight-note {
+      color: var(--radianite);
+      font-weight: 600;
+    }
+
+    /* ─── PROJECT CARDS ──────────────────────────────────────────────── */
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 64px;
+    }
+
+    .project-card {
+      display: flex;
+      gap: 22px;
+      align-items: flex-start;
+      background: var(--surface);
+      padding: 22px 22px 20px;
+      position: relative;
+      border-left: 4px solid transparent;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+      transition: background 0.28s ease, border-color 0.28s ease, transform 0.28s ease;
+      cursor: default;
+    }
+    .project-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, transparent 90%, rgba(255,70,85,0.08) 100%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.28s;
+    }
+    .project-card:hover {
+      background: var(--surface-hover);
+      border-left-color: var(--accent);
+      transform: translateX(5px);
+    }
+    .project-card:hover::after { opacity: 1; }
+
+    /* Highlighted = teal accent by default, switches to red on hover */
+    .project-card.highlighted {
+      border-left-color: var(--radianite);
+    }
+    .project-card.highlighted:hover {
+      border-left-color: var(--accent);
+    }
+
+    /* Project thumbnail */
+    .project-img-wrap {
+      width: 108px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .project-img {
+      width: 108px;
+      height: 80px;
+      object-fit: cover;
+      display: block;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%);
+      filter: saturate(0.65) contrast(1.05);
+      transition: filter 0.3s ease;
+    }
+    .project-card:hover .project-img {
+      filter: saturate(1.1) contrast(1.0);
+    }
+
+    /* Project text */
+    .project-content { flex: 1; min-width: 0; }
+
+    .project-venue {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 7px;
+      font-weight: 700;
+    }
+
+    .project-title {
+      font-family: var(--font-header);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 7px;
+      line-height: 1.35;
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+    }
+
+    .project-authors {
+      font-family: var(--font-serif);
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 9px;
+      line-height: 1.5;
+    }
+    .project-authors strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .project-desc {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      color: var(--text-body);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    .project-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .project-links a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--radianite);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      border-bottom: 1px dotted rgba(0, 255, 204, 0.4);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .project-links a:hover {
+      color: var(--text-primary);
+      border-color: transparent;
+    }
+    .project-links .sep {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      user-select: none;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────────── */
+    .bottom-bar {
+      width: 100%;
+      background: rgba(13, 17, 20, 0.96);
+      border-top: 2px solid var(--accent);
+      padding: 22px 24px;
+      text-align: center;
+      position: relative; z-index: 1;
+      transition: background 0.3s;
+    }
+    .bb-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .bb-copyright {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #444;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .bb-copyright a {
+      color: var(--text-muted);
+      text-decoration: none;
+      border-bottom: 1px dotted #555;
+      transition: color 0.2s;
+    }
+    .bb-copyright a:hover { color: var(--text-primary); }
+    .bb-copyright span { color: var(--text-muted); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .main-wrapper { padding: 60px 16px 0; }
+      .bio-section {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        padding: 28px 20px;
+      }
+      .bio-links { justify-content: center; }
+      .bio-photo-wrap { width: 120px; }
+      .bio-photo { width: 120px; height: 120px; }
+      .project-img-wrap { display: none; }
+      .bb-copyright { justify-content: center; text-align: center; }
+    }
+  </style>
+
+  <script>
+    /* Apply saved theme before paint to avoid flash */
+    (function () {
+      var t = localStorage.getItem('theme');
+      if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+  </script>
+</head>
+<body>
+
+<!-- ── PARTICLES ──────────────────────────────────────────────────────── -->
+<div class="radianite-particles" id="particles"></div>
+
+<!-- ── THEME TOGGLE ───────────────────────────────────────────────────── -->
+<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">🌙 Dark</button>
+
+<!-- ── MAIN CONTENT ───────────────────────────────────────────────────── -->
+<div class="main-wrapper">
+
+  <!-- BIO SECTION -->
+  <div class="bio-section">
+    <div class="bio-text">
+      <span class="bio-tag">// NSU ACM SC &nbsp;·&nbsp; R&amp;D Coordinator &amp; Academic Mentor &nbsp;·&nbsp; Web Group Moderator</span>
+
+      <h1 class="bio-name">Saif<br/><em>Mohammed</em></h1>
+
+      <p class="bio-p">
+        I'm a Computer Science and Engineering undergraduate student at
+        <a href="https://www.northsouth.edu/">North South University</a> in Dhaka, Bangladesh.
+        I work on artificial intelligence and modern software systems.
+        I serve as the Coordinator and Academic Mentor of the R&amp;D Group and as the Moderator of the Web Group at the
+        <a href="https://nsusc.acm.org/">NSU ACM Student Chapter</a>.
+        My interests include Artificial Intelligence, Machine Learning, Deep Learning, Natural Language Processing,
+        Computer Vision, Software Engineering, and Database Systems.
+      </p>
+
+      <div class="bio-links">
+        <a href="mailto:saif.mohammed@northsouth.edu" class="bio-link">✉ Email</a>
+        <a href="data/Saif-Mohammed-Resume.pdf"        class="bio-link">↓ Resume</a>
+        <a href="https://x.com/nipunsaif"              class="bio-link">𝕏 Twitter</a>
+        <a href="https://github.com/nipunsaif/"        class="bio-link">⌥ Github</a>
+        <a href="https://www.researchgate.net/profile/Saif-Mohammed-18" class="bio-link">◈ ResearchGate</a>
+      </div>
+    </div>
+
+    <div class="bio-photo-wrap">
+      <a href="images/SaifM.jpeg">
+        <img src="images/SaifM.jpeg" alt="Saif Mohammed" class="bio-photo" />
+      </a>
+    </div>
+  </div>
+
+  <!-- RESEARCH SECTION -->
+  <div class="section-header">
+    <h2 class="section-title">Selected Research Projects</h2>
+  </div>
+  <p class="section-lore">
+    My research lies at the intersection of Artificial Intelligence and the Internet of Things.
+    I specialize in Deep Learning, with a specific focus on Computer Vision, Natural Language Processing, and Generative AI.
+    Key reports are <span class="highlight-note">highlighted</span> below.
+  </p>
+
+  <div class="projects-grid">
+
+    <!-- ① CareerMAS — highlighted -->
+    <div class="project-card highlighted">
+      <div class="project-img-wrap">
+        <img src="images/CareerMAS.jpeg" alt="CareerMAS" class="project-img" />
+      </div>
+      <div class="project-content">
+        <div class="project-venue">// Machine Learning &nbsp;·&nbsp; University Project &nbsp;·&nbsp; 2025</div>
+        <div class="project-title">CareerMAS: A Multi-Agent LLM Framework for Career Guidance and Job Placement in Bangladesh</div>
+        <div class="project-authors">
+          <strong>Saif Mohammed</strong>,
+          Humayra Rahman Nipa,
+          Ankita Kundu,
+          Sabab Ashfak Fahim
+        </div>
+        <div class="project-desc">
+          A multi-agent framework integrating web-scraped data and ML-based salary prediction to provide personalized career
+          recommendations. Using fine-tuned LLMs, it converts unstructured job listings into actionable insights to align
+          job seekers with market demands in Bangladesh.
+        </div>
+        <div class="project-links">
+          <a href="https://www.researchgate.net/publication/395334813_CareerMAS_A_Multi-Agent_LLM_Framework_for_Career_Guidance_and_Job_Placement_in_Bangladesh?channel=doi&linkId=68bd599283031f0e13f289ab&showFulltext=true">Report</a>
+          <span class="sep">/</span>
+          <a href="https://github.com/nipunsaif/CareerMAS">Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② DiabetIQ -->
+    <div class="project-card">
+      <div class="project-img-wrap">
+        <img src="images/DiabetIQ.jpeg" alt="DiabetIQ" class="project-img" />
+      </div>
+      <div class="project-content">
+        <div class="project-venue">// Junior Design Project &nbsp;·&nbsp; University Project &nbsp;·&nbsp; 2025</div>
+        <div class="project-title">DiabetIQ: An Intelligent Diabetes Management Application with an Integrated LLM-Augmented Chatbot and Machine Learning-Driven Early Risk Prediction</div>
+        <div class="project-authors">
+          <strong>Saif Mohammed</strong>,
+          Nazibul Islam Nabil,
+          Humayra Rahman Nipa,
+          Umme Suraia Haque Setu
+        </div>
+        <div class="project-desc">
+          A Flutter-based health framework combining an LLM-augmented RAG chatbot for verifiable medical advice with
+          ML-based early risk prediction. The system analyzes user health data to predict hypo- and hyperglycemia risks,
+          enabling proactive diabetes care.
+        </div>
+        <div class="project-links">
+          <a href="https://www.researchgate.net/publication/391479329_DiabetIQ_An_Intelligent_Diabetes_Management_Application_with_an_Integrated_LLM-Augmented_RAG_Chatbot_and_ML-Based_Risk_Early_Prediction">Report</a>
+          <span class="sep">/</span>
+          <a href="https://github.com/nipunsaif/DiabetIQ">Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ ClueChain — highlighted -->
+    <div class="project-card highlighted">
+      <div class="project-img-wrap">
+        <img src="images/Clue.jpeg" alt="ClueChain" class="project-img" />
+      </div>
+      <div class="project-content">
+        <div class="project-venue">// Artificial Intelligence &nbsp;·&nbsp; University Project &nbsp;·&nbsp; 2025</div>
+        <div class="project-title">ClueChain: A Bayesian Network-Based Mystery Solver Application</div>
+        <div class="project-authors">
+          <strong>Saif Mohammed</strong>,
+          Humayra Rahman Nipa,
+          Mainul Kaysar,
+          Jannatul Islam,
+          Saif Uz Zaman
+        </div>
+        <div class="project-desc">
+          An interactive application that applies Bayesian inference to fictional mystery scenarios. Users input clues
+          and evidence, and the system calculates the probabilities of different suspects, offering a data-driven
+          approach to deduction.
+        </div>
+        <div class="project-links">
+          <a href="https://www.researchgate.net/publication/391453960_ClueChain_A_Bayesian_Network-Based_Mystery_Solver_Application">Report</a>
+          <span class="sep">/</span>
+          <a href="https://github.com/nipunsaif/ClueChain">Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ CP LLM -->
+    <div class="project-card">
+      <div class="project-img-wrap">
+        <img src="images/AI.jpeg" alt="CP Code Generation" class="project-img" />
+      </div>
+      <div class="project-content">
+        <div class="project-venue">// Deep Learning &nbsp;·&nbsp; University Project &nbsp;·&nbsp; 2025</div>
+        <div class="project-title">AI-Powered Competitive Programming Code Generation Tool Leveraging Large Language Models</div>
+        <div class="project-authors">
+          <strong>Saif Mohammed</strong>,
+          Shawal Kabir Chy.,
+          Sadia Ibnat Isamoni,
+          Humayra Rahman Nipa
+        </div>
+        <div class="project-desc">
+          An iterative pipeline using Code LLaMA and Mistral-7B to generate, verify, and explain algorithmic solutions.
+          By combining self-reflection with execution-based debugging, the system improves solution accuracy and provides
+          pedagogical support for competitive programming.
+        </div>
+        <div class="project-links">
+          <a href="https://www.researchgate.net/publication/395178878_AI-Powered_Competitive_Programming_Code_Generation_Tool_Leveraging_Large_Language_Models">Report</a>
+          <span class="sep">/</span>
+          <a href="https://github.com/nipunsaif/CodeLlama-FT">Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ 7-Segment LED — highlighted -->
+    <div class="project-card highlighted">
+      <div class="project-img-wrap">
+        <img src="images/IUB.jpeg" alt="7 Segment LED Display" class="project-img" />
+      </div>
+      <div class="project-content">
+        <div class="project-venue">// Digital Logic Design &nbsp;·&nbsp; University Project &nbsp;·&nbsp; 2023</div>
+        <div class="project-title">7 Segment LED Display Project: Combinational and Sequential Logic Circuit Design to Display "IUBFALL"</div>
+        <div class="project-authors">
+          <strong>Saif Mohammed</strong>,
+          Al Zamee,
+          Humayra Rahman Nipa,
+          Umme Suraia Haque Setu
+        </div>
+        <div class="project-desc">
+          A hardware implementation utilizing a 4:1 Multiplexer and seven-segment display to visualize the text
+          sequence "IUBFALL". This project demonstrates cost-effective and rapid prototyping of interactive displays
+          using fundamental logic circuit design.
+        </div>
+        <div class="project-links">
+          <a href="https://www.researchgate.net/publication/367350642_Project_Report_on_Designing_a_Combinational_and_Sequential_Logic_Circuit_to_display_IUBFALL_in_a_Seven-Segment_Display">Report</a>
+          <span class="sep">/</span>
+          <a href="https://github.com/nipunsaif/7-Segment-LED-Display-Project">Simulation</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /projects-grid -->
+
+</div><!-- /main-wrapper -->
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+<div class="bottom-bar">
+  <div class="bb-content">
+    <div class="bb-copyright">
+      <div>© 2026 Saif Mohammed · North South University</div>
+      <div>
+        Template by <a href="https://github.com/jonbarron/jonbarron_website" target="_blank">Jon Barron</a>
+        &nbsp;·&nbsp;
+        Developed by <span>NSU ACM SC Web Group</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SCRIPTS ────────────────────────────────────────────────────────── -->
+<script>
+  /* ── Radianite Cube Particles ── */
+  (function () {
+    const wrap = document.getElementById('particles');
+    for (let i = 0; i < 18; i++) {
+      const cube = document.createElement('div');
+      cube.className = 'cube';
+      const size = Math.random() * 28 + 8;
+      cube.style.cssText = `
+        left:${Math.random() * 100}%;
+        width:${size}px; height:${size}px;
+        --dx:${(Math.random() - 0.5) * 160}px;
+        animation-duration:${Math.random() * 9 + 7}s;
+        animation-delay:${Math.random() * 6}s;
+      `;
+      wrap.appendChild(cube);
+    }
+  })();
+
+  /* ── Theme Toggle ── */
+  (function () {
+    const btn = document.getElementById('theme-toggle');
+    if (document.documentElement.getAttribute('data-theme') === 'light') {
+      if (btn) btn.textContent = '☀️ Light';
+    }
+
+    window.toggleTheme = function () {
+      const html = document.documentElement;
+      const isLight = html.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        html.removeAttribute('data-theme');
+        btn.textContent = '🌙 Dark';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.setAttribute('data-theme', 'light');
+        btn.textContent = '☀️ Light';
+        localStorage.setItem('theme', 'light');
+      }
+    };
+  })();
+</script>
+
+</body>
+</html>
