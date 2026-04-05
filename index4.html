@@ -119,12 +119,6 @@ body::before {
   text-transform: uppercase;
   margin-bottom: 22px;
 }
-.bio-name .name-first {
-  color: var(--val-light);
-}
-.bio-name .name-second {
-  color: var(--val-red);
-}
 
 .bio-intro {
   font-family: var(--font-serif);
@@ -152,21 +146,20 @@ body::before {
   margin-bottom: 24px;
 }
 .interest-tag {
-  font-family: var(--font-serif);
-  font-size: 15px;
-  color: var(--val-light);
-  border: none;
-  padding: 0;
-  text-transform: none;
-  letter-spacing: 0;
-  clip-path: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--val-muted);
+  border: 1px solid rgba(139, 151, 143, 0.28);
+  padding: 4px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%);
   transition: all 0.2s;
   cursor: default;
-  display: inline;
 }
 .interest-tag:hover {
   color: var(--val-light);
-  border-color: transparent;
+  border-color: rgba(255, 70, 85, 0.5);
 }
 
 /* Profile Links */
@@ -540,19 +533,32 @@ body::before {
   <section class="bio-section">
 
     <div class="bio-text">
-      <!-- <span class="bio-eyebrow">// CSE Undergraduate &middot; North South University</span> -->
-      <h1 class="bio-name"><span class="name-first">Saif</span><br/><span class="name-second">Mohammed</span></h1>
+      <span class="bio-eyebrow">// CSE Undergraduate &middot; North South University</span>
+      <h1 class="bio-name">Saif<br/>Mohammed</h1>
 
       <p class="bio-intro">
-        I'm a Research Assistant (RA) at
-        <a href="https://www.northsouth.edu/">North South University</a> and also Chief Technical Officer (CTO) <a href="https://runbangladesh.com/">Run Bangladesh</a> at a running event startup in Dhaka, Bangladesh.
-        I work on artificial intelligence and modern software systems. Additionally, I serve as the Coordinator and Academic Mentor of the Research and Development Group (R&amp;D) Group and as the
+        I'm a Computer Science and Engineering undergraduate student at
+        <a href="https://www.northsouth.edu/">North South University</a> in Dhaka, Bangladesh.
+        I work on artificial intelligence and modern software systems.
+        I serve as the Coordinator and Academic Mentor of the R&amp;D Group and as the
         Moderator of the Web Group at the
-        <a href="https://nsusc.acm.org/">NSU ACM Student Chapter</a>. My research interests include Computer Vision (CV), Natural Language Processing (NLP), Deep Learning (DL), and Generative AI (GenAI).
-        </p>
+        <a href="https://nsusc.acm.org/">NSU ACM Student Chapter</a>.
+      </p>
+
+      <div class="interest-tags">
+        <span class="interest-tag">Artificial Intelligence</span>
+        <span class="interest-tag">Machine Learning</span>
+        <span class="interest-tag">Deep Learning</span>
+        <span class="interest-tag">Natural Language Processing</span>
+        <span class="interest-tag">Computer Vision</span>
+        <span class="interest-tag">Generative AI</span>
+        <span class="interest-tag">Software Engineering</span>
+        <span class="interest-tag">Database Systems</span>
+      </div>
+
       <div class="profile-links">
         <a href="mailto:saif.mohammed@northsouth.edu">Email</a>
-        <a href="data/Saif Mohammed - Resume.pdf">Resume</a>
+        <a href="data/Saif-Mohammed-Resume.pdf">Resume</a>
         <a href="https://x.com/nipunsaif" target="_blank">Twitter</a>
         <a href="https://github.com/nipunsaif/" target="_blank">Github</a>
         <a href="https://www.researchgate.net/profile/Saif-Mohammed-18" target="_blank">ResearchGate</a>
@@ -574,7 +580,7 @@ body::before {
   <section>
 
     <div class="section-header">
-      <!-- <span class="section-eyebrow">// Research Output</span> -->
+      <span class="section-eyebrow">// Research Output</span>
       <h2 class="section-title">Selected Research Projects</h2>
       <p class="section-desc">
         My research lies at the intersection of Artificial Intelligence and the Internet of Things.

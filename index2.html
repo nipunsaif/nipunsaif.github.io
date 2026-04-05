@@ -9,17 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <script>
-      // Apply saved theme immediately to avoid flash of unstyled content
-      (function() {
-        var savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-      })();
-    </script>
   </head>
 
   <body>
-    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">🌙 Dark</button>
     <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
@@ -263,29 +255,6 @@
     </p>
   </td>
 </tr>
-
-    <script>
-      (function() {
-        // Sync toggle button label with current theme
-        var btn = document.getElementById('theme-toggle');
-        if (btn && document.documentElement.getAttribute('data-theme') === 'dark') {
-          btn.textContent = '☀️ Light';
-        }
-        window.toggleTheme = function() {
-          var html = document.documentElement;
-          var btn = document.getElementById('theme-toggle');
-          if (html.getAttribute('data-theme') === 'dark') {
-            html.removeAttribute('data-theme');
-            if (btn) btn.textContent = '🌙 Dark';
-            localStorage.setItem('theme', 'light');
-          } else {
-            html.setAttribute('data-theme', 'dark');
-            if (btn) btn.textContent = '☀️ Light';
-            localStorage.setItem('theme', 'dark');
-          }
-        };
-      })();
-    </script>
 
             <!-- DEMO  -->
 <!-- <tr onmouseout="radmesh_stop()" onmouseover="radmesh_start()" bgcolor="#ffffd0">
