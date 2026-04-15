@@ -283,73 +283,6 @@ body::before {
 }
 
 /* =========================================================
-   EXPERIENCE & EDUCATION ENTRIES
-   ========================================================= */
-.section-block {
-  margin-bottom: 54px;
-}
-.entries-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.entry-card {
-  background: var(--val-grey);
-  border-left: 4px solid var(--val-red);
-  padding: 18px 20px 16px;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-.entry-card:hover {
-  background: #272d35;
-  transform: translateX(4px);
-}
-.entry-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 4px;
-}
-.entry-title {
-  font-family: var(--font-header);
-  font-size: 18px;
-  color: var(--val-light);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-.entry-date {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--val-red);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-.entry-org {
-  font-family: var(--font-serif);
-  font-size: 16px;
-  color: #c5cdd5;
-  margin-bottom: 1px;
-}
-.entry-location {
-  font-family: var(--font-serif);
-  font-size: 14px;
-  color: #8f9aa3;
-  margin-bottom: 10px;
-}
-.entry-bullets {
-  margin-left: 18px;
-  color: #a8b4ad;
-}
-.entry-bullets li {
-  font-family: var(--font-serif);
-  font-size: 14.5px;
-  line-height: 1.6;
-  margin-bottom: 4px;
-}
-
-/* =========================================================
    PROJECT CARDS
    ========================================================= */
 .projects-list {
@@ -583,11 +516,6 @@ body::before {
   .bio-photo { width: 150px; height: 150px; }
   .interest-tags { justify-content: center; }
   .profile-links { justify-content: center; }
-  .entry-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 3px;
-  }
   .project-card { flex-direction: column; }
   .project-thumb {
     width: 100%; min-width: unset;
@@ -615,6 +543,14 @@ body::before {
       <!-- <span class="bio-eyebrow">// CSE Undergraduate &middot; North South University</span> -->
       <h1 class="bio-name"><span class="name-first">Saif</span><br/><span class="name-second">Mohammed</span></h1>
 
+      <!-- <p class="bio-intro">
+        I'm a Research Assistant (RA) at
+        <a href="https://www.northsouth.edu/">North South University</a> and also Chief Technical Officer (CTO) <a href="https://runbangladesh.com/">Run Bangladesh</a> at a running event startup in Dhaka, Bangladesh.
+        I work on artificial intelligence and modern software systems. Additionally, I serve as the Coordinator and Academic Mentor of the Research and Development Group (R&amp;D) Group and as the
+        Moderator of the Web Group at the
+        <a href="https://nsusc.acm.org/">NSU ACM Student Chapter</a>. My research interests include Computer Vision (CV), Natural Language Processing (NLP), Deep Learning (DL), and Generative AI (GenAI).
+        </p> -->
+
         <p class="bio-intro">
           I am a Research Assistant (RA) at 
           <a href="https://www.northsouth.edu/">North South University</a> and the Chief Technical Officer (CTO) at 
@@ -624,9 +560,11 @@ body::before {
           My research interests include Computer Vision (CV), Natural Language Processing (NLP), Deep Learning (DL), and Generative AI (GenAI).
         </p>
 
+        
       <div class="profile-links">
         <a href="mailto:saif.mohammed@northsouth.edu">Email</a>
         <a href="data/Saif Mohammed - Resume.pdf">Resume</a>
+        <a href="https://www.linkedin.com/in/nipunsaif/" target="_blank">LinkedIn</a>
         <a href="https://x.com/nipunsaif" target="_blank">Twitter</a>
         <a href="https://github.com/nipunsaif/" target="_blank">Github</a>
         <a href="https://www.researchgate.net/profile/Saif-Mohammed-18" target="_blank">ResearchGate</a>
@@ -643,88 +581,12 @@ body::before {
   </section>
 
   <!-- ==========================================================
-       EXPRIENCE
-       ========================================================== -->
-  <section class="section-block">
-    <div class="section-header">
-      <h2 class="section-title">Exprience</h2>
-    </div>
-
-    <div class="entries-list">
-      <div class="entry-card">
-        <div class="entry-head">
-          <div class="entry-title">Research Assistant</div>
-          <div class="entry-date">April 2026 - Present</div>
-        </div>
-        <div class="entry-org">North South University</div>
-        <!-- <div class="entry-location">Baridhara, Dhaka - 1229</div> -->
-        <ul class="entry-bullets">
-          <li>Selected for a funded research project under the supervision of Dr. M. Rashedur Rahman.</li>
-          <li>Conducting research on image decolorization and its applications in computer vision.</li>
-          <li>Exploring downstream vision tasks such as segmentation using grayscale representations.</li>
-        </ul>
-      </div>
-
-      <div class="entry-card">
-        <div class="entry-head">
-          <div class="entry-title">Chief Technical Officer</div>
-          <div class="entry-date">October 2019 - Present</div>
-        </div>
-        <div class="entry-org">Run Bangladesh</div>
-        <!-- <div class="entry-location">Rampura, Dhaka, Bangladesh</div> -->
-        <ul class="entry-bullets">
-          <li>Leading technical strategy and overseeing development of a Laravel-based platform using PHP.</li>
-          <li>Developing scalable web applications for event management, registration, and engagement.</li>
-          <li>Implementing timing solutions for running events with accurate tracking and real-time results.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================
-       EDUCATION
-       ========================================================== -->
-  <section class="section-block">
-    <div class="section-header">
-      <h2 class="section-title">Education</h2>
-    </div>
-
-    <div class="entries-list">
-      <div class="entry-card">
-        <div class="entry-head">
-          <div class="entry-title">Bachelor of Science in Computer Science &amp; Engineering</div>
-          <div class="entry-date">October 2021 - Present</div>
-        </div>
-        <div class="entry-org">Department of Electrical &amp; Computer Engineering, North South University</div>
-        <div class="entry-location">Baridhara, Dhaka - 1229</div>
-      </div>
-
-      <div class="entry-card">
-        <div class="entry-head">
-          <div class="entry-title">Higher Secondary Certificate (Science)</div>
-          <div class="entry-date">July 2018 - December 2020</div>
-        </div>
-        <div class="entry-org">Dhaka College</div>
-        <div class="entry-location">New Market, Dhaka - 1205</div>
-      </div>
-
-      <div class="entry-card">
-        <div class="entry-head">
-          <div class="entry-title">Secondary School Certificate (Science)</div>
-          <div class="entry-date">January 2008 - March 2018</div>
-        </div>
-        <div class="entry-org">Ideal School and College</div>
-        <div class="entry-location">Motijheel, Dhaka - 1000</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================
        SELECTED RESEARCH PROJECTS
        ========================================================== -->
   <section>
 
     <div class="section-header">
+      <!-- <span class="section-eyebrow">// Research Output</span> -->
       <h2 class="section-title">Selected Research Projects</h2>
       <p class="section-desc">
         My research lies at the intersection of Artificial Intelligence and the Internet of Things.
@@ -892,7 +754,7 @@ body::before {
       Department of ECE, North South University, Bashundhara R/A, Dhaka-1229, Bangladesh.
     </div>
     <div class="bb-copyright">
-      <div>&copy; 2025 Saif Mohammed. All Rights Reserved.</div>
+      <div>© 2025 Saif Mohammed. All Rights Reserved.</div>
       <div>Template adapted from <span><a href="https://github.com/jonbarron/jonbarron_website" target="_blank">Jon Barron</a></span></div>
     </div>
   </div>

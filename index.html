@@ -28,9 +28,13 @@
   --font-serif:  'Newsreader', 'Charter', Georgia, serif; /* Body / Reading    */
   --font-sans:   'Inter', system-ui, sans-serif;  /* UI / Labels       */
   --font-mono:   'JetBrains Mono', monospace;     /* Tags / Code       */
+  --nav-offset: 92px;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-offset);
+}
 
 body {
   font-family: var(--font-sans);
@@ -82,8 +86,94 @@ body::before {
   z-index: 1;
   max-width: 900px;
   margin: 0 auto;
-  padding: 70px 24px 0;
+  padding: calc(var(--nav-offset) + 18px) 24px 0;
 }
+
+section[id] {
+  scroll-margin-top: calc(var(--nav-offset) + 8px);
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  background: rgba(9, 13, 18, 0.94);
+  border-bottom: 1px solid rgba(255, 70, 85, 0.25);
+  backdrop-filter: blur(8px);
+}
+.top-nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-brand {
+  font-family: var(--font-header);
+  font-size: 18px;
+  color: var(--val-light);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--val-red);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid rgba(255, 70, 85, 0.4);
+  padding: 7px 12px;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
+  transition: all 0.25s ease;
+}
+.nav-links a:hover {
+  color: var(--val-dark);
+  background: var(--val-red);
+}
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(255, 70, 85, 0.55);
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.nav-toggle span {
+  position: relative;
+  width: 18px;
+  height: 2px;
+  background: var(--val-red);
+  display: block;
+}
+.nav-toggle span::before,
+.nav-toggle span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  background: var(--val-red);
+}
+.nav-toggle span::before { top: -6px; }
+.nav-toggle span::after { top: 6px; }
 
 /* =========================================================
    HERO / BIO SECTION
@@ -280,6 +370,73 @@ body::before {
   padding: 1px 6px;
   font-style: normal;
   border: 1px solid rgba(255, 70, 85, 0.2);
+}
+
+/* =========================================================
+   EXPERIENCE & EDUCATION ENTRIES
+   ========================================================= */
+.section-block {
+  margin-bottom: 54px;
+}
+.entries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.entry-card {
+  background: var(--val-grey);
+  border-left: 4px solid var(--val-red);
+  padding: 18px 20px 16px;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.entry-card:hover {
+  background: #272d35;
+  transform: translateX(4px);
+}
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.entry-title {
+  font-family: var(--font-header);
+  font-size: 18px;
+  color: var(--val-light);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.entry-date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--val-red);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.entry-org {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: #c5cdd5;
+  margin-bottom: 1px;
+}
+.entry-location {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: #8f9aa3;
+  margin-bottom: 10px;
+}
+.entry-bullets {
+  margin-left: 18px;
+  color: #a8b4ad;
+}
+.entry-bullets li {
+  font-family: var(--font-serif);
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin-bottom: 4px;
 }
 
 /* =========================================================
@@ -503,7 +660,38 @@ body::before {
    RESPONSIVE
    ========================================================= */
 @media (max-width: 700px) {
-  .site-wrapper { padding: 40px 16px 0; }
+  :root {
+    --nav-offset: 78px;
+  }
+  .site-wrapper { padding: calc(var(--nav-offset) + 10px) 16px 0; }
+  .top-nav-inner {
+    padding: 10px 16px;
+  }
+  .nav-brand {
+    font-size: 16px;
+  }
+  .nav-toggle {
+    display: inline-flex;
+  }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(15, 25, 35, 0.98);
+    border-bottom: 1px solid rgba(255, 70, 85, 0.25);
+    padding: 12px 16px 14px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links a {
+    text-align: center;
+  }
   .bio-section {
     flex-direction: column-reverse;
     align-items: center;
@@ -516,6 +704,11 @@ body::before {
   .bio-photo { width: 150px; height: 150px; }
   .interest-tags { justify-content: center; }
   .profile-links { justify-content: center; }
+  .entry-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
   .project-card { flex-direction: column; }
   .project-thumb {
     width: 100%; min-width: unset;
@@ -525,7 +718,21 @@ body::before {
 
 </style>
 </head>
-<body>
+<body id="home">
+
+<header class="top-nav">
+  <div class="top-nav-inner">
+    <a href="#home" class="nav-brand">Saif Mohammed</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#experience">Exprience</a>
+      <a href="#education">Education</a>
+      <a href="#research-projects">Research</a>
+    </nav>
+  </div>
+</header>
 
 <!-- ============================================================
      RADIANITE CUBE PARTICLES
@@ -543,28 +750,17 @@ body::before {
       <!-- <span class="bio-eyebrow">// CSE Undergraduate &middot; North South University</span> -->
       <h1 class="bio-name"><span class="name-first">Saif</span><br/><span class="name-second">Mohammed</span></h1>
 
-      <!-- <p class="bio-intro">
-        I'm a Research Assistant (RA) at
-        <a href="https://www.northsouth.edu/">North South University</a> and also Chief Technical Officer (CTO) <a href="https://runbangladesh.com/">Run Bangladesh</a> at a running event startup in Dhaka, Bangladesh.
-        I work on artificial intelligence and modern software systems. Additionally, I serve as the Coordinator and Academic Mentor of the Research and Development Group (R&amp;D) Group and as the
-        Moderator of the Web Group at the
-        <a href="https://nsusc.acm.org/">NSU ACM Student Chapter</a>. My research interests include Computer Vision (CV), Natural Language Processing (NLP), Deep Learning (DL), and Generative AI (GenAI).
-        </p> -->
-
         <p class="bio-intro">
           I am a Research Assistant (RA) at 
           <a href="https://www.northsouth.edu/">North South University</a> and the Chief Technical Officer (CTO) at 
-          <a href="https://runbangladesh.com/">Run Bangladesh</a>, a running event startup based in Dhaka, Bangladesh.
-          I work on artificial intelligence and modern software systems. Additionally, I serve as the Coordinator and Academic Mentor of the Research and Development (R&amp;D) Group, and as the Moderator of the Web Group at the 
-          <a href="https://nsusc.acm.org/">NSU ACM Student Chapter</a>. 
-          My research interests include Computer Vision (CV), Natural Language Processing (NLP), Deep Learning (DL), and Generative AI (GenAI).
+          <a href="https://runbangladesh.com/">Run Bangladesh</a>, a running event startup based in Dhaka, Bangladesh. Additionally, I serve as the Coordinator and Academic Mentor of the Research and Development (R&amp;D) Group, and as the Moderator of the Web Group at the 
+          <a href="https://nsusc.acm.org/">NSU ACM Student Chapter</a>. My research interests include Computer Vision, Natural Language Processing, and Deep Learning.
         </p>
 
-        
       <div class="profile-links">
         <a href="mailto:saif.mohammed@northsouth.edu">Email</a>
         <a href="data/Saif Mohammed - Resume.pdf">Resume</a>
-        <a href="https://www.linkedin.com/in/nipunsaif/" target="_blank">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/nipunsaif" target="_blank">LinkedIn</a>
         <a href="https://x.com/nipunsaif" target="_blank">Twitter</a>
         <a href="https://github.com/nipunsaif/" target="_blank">Github</a>
         <a href="https://www.researchgate.net/profile/Saif-Mohammed-18" target="_blank">ResearchGate</a>
@@ -581,12 +777,162 @@ body::before {
   </section>
 
   <!-- ==========================================================
+       EXPRIENCE
+       ========================================================== -->
+  <section class="section-block" id="experience">
+    <div class="section-header">
+      <h2 class="section-title">Exprience</h2>
+    </div>
+
+    <div class="entries-list">
+      <div class="entry-card">
+        <div class="entry-head">
+          <div class="entry-title">Research Assistant</div>
+          <div class="entry-date">April 2026 - Present</div>
+        </div>
+
+        <div class="entry-head">
+        <div class="entry-org">North South University</div>
+        <div class="entry-location">Baridhara, Dhaka - 1229</div>
+        </div>
+        <div class="project-desc">
+          Selected for a funded research project under the supervision of Dr. M. Rashedur Rahman. Conducting research on image decolorization and its applications in computer vision. Exploring downstream vision tasks such as segmentation using grayscale representations.
+        </div>
+      </div>
+
+      <div class="entry-card">
+        <div class="entry-head">
+          <div class="entry-title">Chief Technical Officer</div>
+          <div class="entry-date">October 2019 - Present</div>
+        </div>
+
+        <div class="entry-head">
+        <div class="entry-org">Run Bangladesh</div>
+        <div class="entry-location">Rampura, Dhaka - 1219</div>
+        </div>
+
+        <div class="project-desc">
+            Leading technical strategy and overseeing development of a Laravel-based platform using PHP. Developing scalable web applications for event management, registration, and engagement. Implementing timing solutions for running events with accurate tracking and real-time results.
+        </div>
+      </div>
+
+      <div class="entry-card">
+        <div class="entry-head">
+          <div class="entry-title">Coordinator, Research and Development Group</div>
+          <div class="entry-date">March 2025 - Present</div>
+        </div>
+        
+        <div class="entry-head">
+        <div class="entry-org">NSU ACM Student Chapter, North South University</div>
+        <div class="entry-location">Baridhara, Dhaka - 1229</div>
+        </div>
+
+    
+        <div class="project-desc">
+          Led early-stage event planning through visualization-driven prototyping. Facilitated the successful execution of mentorship programs and R&amp;D workshop series.
+        </div>
+      </div>
+
+        <div class="entry-card">
+        <div class="entry-head">
+          <div class="entry-title">Academic Mentor, Research and Development Group</div>
+          <div class="entry-date">March 2025 - Present</div>
+        </div>
+
+        <div class="entry-head">
+        <div class="entry-org">NSU ACM Student Chapter, North South University</div>
+        <div class="entry-location">Baridhara, Dhaka - 1229</div>
+        </div>
+        <div class="project-desc">
+          Conducted academic sessions on core CS courses including DSA, COA, and DBMS. Delivered sessions on efficient programming practices using C++ and Python.
+        </div>
+      </div>
+
+      <div class="entry-card">
+        <div class="entry-head">
+          <div class="entry-title">Moderator, Web Group and Research & Development Group</div>
+          <div class="entry-date">March 2025 - 2026</div>
+        </div>
+
+        <div class="entry-head">
+        <div class="entry-org">NSU ACM Student Chapter, North South University</div>
+        <div class="entry-location">Baridhara, Dhaka - 1229</div>
+        </div>
+
+        <div class="project-desc">
+          Maintained and updated the official club website using Next.js. Coordinated design and development for Technovation 3.0 using React and TypeScript.
+        </div>
+      </div>
+
+      <!-- <div class="entry-card">
+        <div class="entry-head">
+          <div class="entry-title">Academic Mentor, Research and Development Group</div>
+          <div class="entry-date">March 2025 - Present</div>
+        </div>
+
+        <div class="entry-head">
+        <div class="entry-org">NSU ACM Student Chapter, North South University</div>
+        <div class="entry-location">Baridhara, Dhaka - 1229</div>
+        </div>
+        <div class="project-desc">
+          Conducted academic sessions on core CS courses including DSA, COA, and DBMS. Delivered sessions on efficient programming practices using C++ and Python.
+        </div>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       EDUCATION
+       ========================================================== -->
+  <section class="section-block" id="education">
+    <div class="section-header">
+      <h2 class="section-title">Education</h2>
+    </div>
+
+    <div class="entries-list">
+      <div class="entry-card">
+        <div class="entry-head">
+          <div class="entry-title">Bachelor of Science in Computer Science &amp; Engineering</div>
+          <div class="entry-date">October 2021 - Present</div>
+        </div>
+
+        <div class="entry-head">
+        <div class="entry-org">Department of Electrical &amp; Computer Engineering, North South University</div>
+        <div class="entry-location">Baridhara, Dhaka - 1229</div>
+        </div>
+      </div>
+
+      <div class="entry-card">
+        <div class="entry-head">
+          <div class="entry-title">Higher Secondary Certificate</div>
+          <div class="entry-date">July 2018 - December 2020</div>
+        </div>
+        
+        <div class="entry-head">
+        <div class="entry-org">Dhaka College</div>
+        <div class="entry-location">New Market, Dhaka - 1205</div>
+        </div>
+      </div>
+
+      <div class="entry-card">
+        <div class="entry-head">
+          <div class="entry-title">Secondary School Certificate</div>
+          <div class="entry-date">January 2008 - March 2018</div>
+        </div>
+        <div class="entry-head">
+        <div class="entry-org">Ideal School and College</div>
+        <div class="entry-location">Motijheel, Dhaka - 1000</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
        SELECTED RESEARCH PROJECTS
        ========================================================== -->
-  <section>
+  <section id="research-projects">
 
     <div class="section-header">
-      <!-- <span class="section-eyebrow">// Research Output</span> -->
       <h2 class="section-title">Selected Research Projects</h2>
       <p class="section-desc">
         My research lies at the intersection of Artificial Intelligence and the Internet of Things.
@@ -754,7 +1100,7 @@ body::before {
       Department of ECE, North South University, Bashundhara R/A, Dhaka-1229, Bangladesh.
     </div>
     <div class="bb-copyright">
-      <div>© 2025 Saif Mohammed. All Rights Reserved.</div>
+      <div>&copy; 2025 Saif Mohammed. All Rights Reserved.</div>
       <div>Template adapted from <span><a href="https://github.com/jonbarron/jonbarron_website" target="_blank">Jon Barron</a></span></div>
     </div>
   </div>
@@ -764,6 +1110,20 @@ body::before {
      RADIANITE PARTICLES SCRIPT
      ========================================================== -->
 <script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', String(!expanded));
+  });
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
   const container = document.getElementById('particles');
   for (let i = 0; i < 18; i++) {
     const cube = document.createElement('div');
